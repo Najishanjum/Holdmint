@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode */
+    --background: #F7F9FC;
+    --surface: #FFFFFF;
+    --surface-elevated: #EDF2F7;
+    --border: #DDE3EA;
+    --primary-text: #0B0F14;
+    --muted-text: #5A6675;
+    --spend-green: #10B981;
+    --tax-amber: #D97706;
+    --savings-periwinkle: #4F46E5;
+    --danger-coral: #E11D48;
+  }
+
+  .dark {
+    /* Exact Requested Dark Tokens */
+    --background: #0B0F14;
+    --surface: #121821;
+    --surface-elevated: #171F2A;
+    --border: #1E2733;
+    --primary-text: #F2F5F9;
+    --muted-text: #8A97A8;
+    --spend-green: #34D399;
+    --tax-amber: #F5B44A;
+    --savings-periwinkle: #7C8CFF;
+    --danger-coral: #F2677A;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--primary-text);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-family: var(--font-inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-text);
+}

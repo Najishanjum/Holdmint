@@ -1,0 +1,206 @@
+{
+  "version": "0.1.0",
+  "name": "tax_vault",
+  "instructions": [
+    {
+      "name": "initProfile",
+      "accounts": [
+        { "name": "profile", "isMut": true, "isSigner": false },
+        { "name": "vaultAuthority", "isMut": false, "isSigner": false },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "owner", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false },
+        { "name": "rent", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "spendBps", "type": "u16" },
+        { "name": "taxBps", "type": "u16" },
+        { "name": "savingsBps", "type": "u16" },
+        { "name": "taxPayee", "type": "publicKey" },
+        { "name": "savingsUnlockTs", "type": "i64" },
+        { "name": "rulesCooldownSecs", "type": "i64" },
+        { "name": "payeeDelaySecs", "type": "i64" }
+      ]
+    },
+    {
+      "name": "setRules",
+      "accounts": [
+        { "name": "profile", "isMut": true, "isSigner": false },
+        { "name": "owner", "isMut": false, "isSigner": true }
+      ],
+      "args": [
+        { "name": "spendBps", "type": "u16" },
+        { "name": "taxBps", "type": "u16" },
+        { "name": "savingsBps", "type": "u16" }
+      ]
+    },
+    {
+      "name": "applyRules",
+      "accounts": [
+        { "name": "profile", "isMut": true, "isSigner": false },
+        { "name": "owner", "isMut": false, "isSigner": true }
+      ],
+      "args": []
+    },
+    {
+      "name": "proposePayee",
+      "accounts": [
+        { "name": "profile", "isMut": true, "isSigner": false },
+        { "name": "owner", "isMut": false, "isSigner": true }
+      ],
+      "args": [
+        { "name": "newPayee", "type": "publicKey" }
+      ]
+    },
+    {
+      "name": "applyPayee",
+      "accounts": [
+        { "name": "profile", "isMut": true, "isSigner": false },
+        { "name": "owner", "isMut": false, "isSigner": true }
+      ],
+      "args": []
+    },
+    {
+      "name": "payWorker",
+      "accounts": [
+        { "name": "profile", "isMut": true, "isSigner": false },
+        { "name": "vaultAuthority", "isMut": false, "isSigner": false },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "payerTokenAccount", "isMut": true, "isSigner": false },
+        { "name": "spendVault", "isMut": true, "isSigner": false },
+        { "name": "taxVault", "isMut": true, "isSigner": false },
+        { "name": "savingsVault", "isMut": true, "isSigner": false },
+        { "name": "paymentRecord", "isMut": true, "isSigner": false },
+        { "name": "payer", "isMut": true, "isSigner": true },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false },
+        { "name": "rent", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "amount", "type": "u64" }
+      ]
+    },
+    {
+      "name": "sweepInbox",
+      "accounts": [
+        { "name": "profile", "isMut": true, "isSigner": false },
+        { "name": "vaultAuthority", "isMut": false, "isSigner": false },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "inbox", "isMut": true, "isSigner": false },
+        { "name": "spendVault", "isMut": true, "isSigner": false },
+        { "name": "taxVault", "isMut": true, "isSigner": false },
+        { "name": "savingsVault", "isMut": true, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": []
+    },
+    {
+      "name": "withdrawSpend",
+      "accounts": [
+        { "name": "profile", "isMut": false, "isSigner": false },
+        { "name": "vaultAuthority", "isMut": false, "isSigner": false },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "spendVault", "isMut": true, "isSigner": false },
+        { "name": "workerTokenAccount", "isMut": true, "isSigner": false },
+        { "name": "owner", "isMut": false, "isSigner": true },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "amount", "type": "u64" }
+      ]
+    },
+    {
+      "name": "releaseTax",
+      "accounts": [
+        { "name": "profile", "isMut": false, "isSigner": false },
+        { "name": "vaultAuthority", "isMut": false, "isSigner": false },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "taxVault", "isMut": true, "isSigner": false },
+        { "name": "payeeTokenAccount", "isMut": true, "isSigner": false },
+        { "name": "owner", "isMut": false, "isSigner": true },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "amount", "type": "u64" }
+      ]
+    },
+    {
+      "name": "withdrawSavings",
+      "accounts": [
+        { "name": "profile", "isMut": false, "isSigner": false },
+        { "name": "vaultAuthority", "isMut": false, "isSigner": false },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "savingsVault", "isMut": true, "isSigner": false },
+        { "name": "workerTokenAccount", "isMut": true, "isSigner": false },
+        { "name": "owner", "isMut": false, "isSigner": true },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "amount", "type": "u64" }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "WorkerProfile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "owner", "type": "publicKey" },
+          { "name": "mint", "type": "publicKey" },
+          { "name": "spendBps", "type": "u16" },
+          { "name": "taxBps", "type": "u16" },
+          { "name": "savingsBps", "type": "u16" },
+          { "name": "taxPayee", "type": "publicKey" },
+          { "name": "hasPendingRules", "type": "bool" },
+          { "name": "pendingSpendBps", "type": "u16" },
+          { "name": "pendingTaxBps", "type": "u16" },
+          { "name": "pendingSavingsBps", "type": "u16" },
+          { "name": "pendingRulesEffectiveTs", "type": "i64" },
+          { "name": "hasPendingPayee", "type": "bool" },
+          { "name": "pendingPayee", "type": "publicKey" },
+          { "name": "pendingPayeeEffectiveTs", "type": "i64" },
+          { "name": "savingsUnlockTs", "type": "i64" },
+          { "name": "rulesCooldownSecs", "type": "i64" },
+          { "name": "payeeDelaySecs", "type": "i64" },
+          { "name": "totalReceived", "type": "u64" },
+          { "name": "totalTaxReserved", "type": "u64" },
+          { "name": "paymentCount", "type": "u64" },
+          { "name": "bump", "type": "u8" }
+        ]
+      }
+    },
+    {
+      "name": "PaymentRecord",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "profile", "type": "publicKey" },
+          { "name": "payer", "type": "publicKey" },
+          { "name": "grossAmount", "type": "u64" },
+          { "name": "spendAmount", "type": "u64" },
+          { "name": "taxAmount", "type": "u64" },
+          { "name": "savingsAmount", "type": "u64" },
+          { "name": "timestamp", "type": "i64" },
+          { "name": "paymentSeq", "type": "u64" }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    { "code": 6000, "name": "InvalidBasisPointsSum", "msg": "Basis points must sum to exactly 10,000 (100.00%)" },
+    { "code": 6001, "name": "TaxBelowMinimumSafeguard", "msg": "Tax basis points cannot be below the minimum configured safeguard" },
+    { "code": 6002, "name": "ZeroPaymentAmount", "msg": "Payment amount must be greater than zero base units" },
+    { "code": 6003, "name": "InvalidMint", "msg": "Invalid token mint: account mint does not match profile mint" },
+    { "code": 6004, "name": "UnauthorizedOwner", "msg": "Unauthorized: Signer does not match profile owner" },
+    { "code": 6005, "name": "UnauthorizedTaxPayee", "msg": "Tax funds can only be released to the worker's active approved tax payee" },
+    { "code": 6006, "name": "SavingsLocked", "msg": "Savings vault funds are time-locked and cannot be withdrawn prior to the unlock timestamp" },
+    { "code": 6007, "name": "RulesCooldownNotElapsed", "msg": "The cooldown period for proposed rule changes has not elapsed yet" },
+    { "code": 6008, "name": "NoPendingRules", "msg": "No pending rule changes exist on this profile" },
+    { "code": 6009, "name": "PayeeDelayNotElapsed", "msg": "The change delay for the proposed tax payee has not elapsed yet" },
+    { "code": 6010, "name": "NoPendingPayee", "msg": "No pending payee change exists on this profile" },
+    { "code": 6011, "name": "MathOverflow", "msg": "Arithmetic overflow or underflow occurred during token allocation" },
+    { "code": 6012, "name": "InsufficientBalance", "msg": "Insufficient balance in the specified vault" },
+    { "code": 6013, "name": "InboxEmpty", "msg": "Inbox is empty; no tokens available to sweep" }
+  ]
+}
