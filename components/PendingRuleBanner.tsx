@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Clock, AlertCircle, CheckCircle, ArrowRight, X } from "lucide-react";
+import { Clock, CheckCircle, ArrowRight } from "lucide-react";
 import { useVault } from "@/lib/store/vault-store";
 
 export function PendingRuleBanner() {
@@ -34,30 +34,30 @@ export function PendingRuleBanner() {
   );
 
   return (
-    <div className="space-y-2 mb-6">
+    <div className="space-y-3 mb-6 font-mono text-xs">
       {/* Pending Split Rules Banner */}
       {profile.hasPendingRules && (
-        <div className="p-4 rounded-xl bg-tax/10 border border-tax/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs animate-in fade-in">
+        <div className="p-4 rounded-[6px] bg-[#E8FF00] border-2 border-[#050505] neo-shadow text-[#050505] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 animate-in fade-in">
           <div className="flex items-start gap-2.5">
-            <Clock className="w-4 h-4 text-tax shrink-0 mt-0.5" />
+            <Clock className="w-5 h-5 text-[#050505] shrink-0 mt-0.5" />
             <div>
-              <div className="font-semibold text-primary">
-                Pending Split Rule Transition
+              <div className="font-display font-black text-sm uppercase tracking-wider">
+                PENDING SPLIT TRANSITION TIMELOCK
               </div>
-              <div className="text-muted mt-0.5">
+              <div className="text-[11px] mt-0.5 font-bold">
                 Current: {profile.spendBps / 100}% / {profile.taxBps / 100}% / {profile.savingsBps / 100}%{" "}
-                <ArrowRight className="inline w-3 h-3 text-tax mx-1" />
+                <ArrowRight className="inline w-3 h-3 mx-1" />
                 Proposed: {(profile.pendingSpendBps || 0) / 100}% / {(profile.pendingTaxBps || 0) / 100}% / {(profile.pendingSavingsBps || 0) / 100}%
               </div>
-              <div className="text-[11px] text-tax mt-1 font-mono">
+              <div className="text-[11px] mt-1 font-black uppercase">
                 {isRulesEligible ? (
-                  <span className="flex items-center gap-1 font-semibold text-spend">
+                  <span className="flex items-center gap-1 text-[#050505]">
                     <CheckCircle className="w-3.5 h-3.5" />
-                    Cooldown elapsed · Ready to activate for future payments
+                    24h Cooldown Elapsed · Ready to activate!
                   </span>
                 ) : (
                   <span>
-                    Cooldown active: {Math.floor(rulesSecsLeft / 60)}m {rulesSecsLeft % 60}s remaining
+                    Cooldown Active: {Math.floor(rulesSecsLeft / 60)}m {rulesSecsLeft % 60}s remaining
                   </span>
                 )}
               </div>
@@ -67,16 +67,16 @@ export function PendingRuleBanner() {
           <div className="flex items-center gap-2 self-end sm:self-center">
             <button
               onClick={cancelPendingRules}
-              className="px-2.5 py-1.5 rounded-lg border border-border text-muted hover:text-primary transition-colors text-xs"
+              className="px-3 py-1.5 rounded bg-white text-[#050505] border-2 border-[#050505] neo-btn text-xs font-bold uppercase"
             >
-              Cancel Proposal
+              Cancel
             </button>
             {isRulesEligible && (
               <button
                 onClick={applyRules}
-                className="px-3 py-1.5 rounded-lg bg-spend text-black font-semibold text-xs hover:opacity-90 transition-opacity"
+                className="px-3.5 py-1.5 rounded bg-[#5919F6] text-white border-2 border-[#050505] neo-btn text-xs font-black uppercase"
               >
-                Apply New Rules Now
+                Apply Rules Now
               </button>
             )}
           </div>
@@ -85,25 +85,25 @@ export function PendingRuleBanner() {
 
       {/* Pending Payee Banner */}
       {profile.hasPendingPayee && (
-        <div className="p-4 rounded-xl bg-tax/10 border border-tax/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs animate-in fade-in">
+        <div className="p-4 rounded-[6px] bg-[#E8FF00] border-2 border-[#050505] neo-shadow text-[#050505] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 animate-in fade-in">
           <div className="flex items-start gap-2.5">
-            <Clock className="w-4 h-4 text-tax shrink-0 mt-0.5" />
+            <Clock className="w-5 h-5 text-[#050505] shrink-0 mt-0.5" />
             <div>
-              <div className="font-semibold text-primary">
-                Pending Approved Tax Payee Update
+              <div className="font-display font-black text-sm uppercase tracking-wider">
+                PENDING APPROVED TAX PAYEE UPDATE
               </div>
-              <div className="text-muted mt-0.5 font-mono">
-                Proposed Payee: {profile.pendingPayee}
+              <div className="text-[11px] mt-0.5 font-bold">
+                Proposed Address: {profile.pendingPayee}
               </div>
-              <div className="text-[11px] text-tax mt-1 font-mono">
+              <div className="text-[11px] mt-1 font-black uppercase">
                 {isPayeeEligible ? (
-                  <span className="flex items-center gap-1 font-semibold text-spend">
+                  <span className="flex items-center gap-1 text-[#050505]">
                     <CheckCircle className="w-3.5 h-3.5" />
-                    72-hour delay elapsed · Ready to activate
+                    72-hour timelock elapsed · Ready to activate!
                   </span>
                 ) : (
                   <span>
-                    Security delay: {Math.floor(payeeSecsLeft / 3600)}h {Math.floor((payeeSecsLeft % 3600) / 60)}m remaining
+                    Security Delay: {Math.floor(payeeSecsLeft / 3600)}h {Math.floor((payeeSecsLeft % 3600) / 60)}m remaining
                   </span>
                 )}
               </div>
@@ -113,16 +113,16 @@ export function PendingRuleBanner() {
           <div className="flex items-center gap-2 self-end sm:self-center">
             <button
               onClick={cancelPendingPayee}
-              className="px-2.5 py-1.5 rounded-lg border border-border text-muted hover:text-primary transition-colors text-xs"
+              className="px-3 py-1.5 rounded bg-white text-[#050505] border-2 border-[#050505] neo-btn text-xs font-bold uppercase"
             >
-              Cancel Proposal
+              Cancel
             </button>
             {isPayeeEligible && (
               <button
                 onClick={applyPayee}
-                className="px-3 py-1.5 rounded-lg bg-spend text-black font-semibold text-xs hover:opacity-90 transition-opacity"
+                className="px-3.5 py-1.5 rounded bg-[#5919F6] text-white border-2 border-[#050505] neo-btn text-xs font-black uppercase"
               >
-                Apply New Payee
+                Apply Payee Now
               </button>
             )}
           </div>

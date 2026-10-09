@@ -14,6 +14,7 @@ const config: Config = {
         background: "var(--background)",
         surface: "var(--surface)",
         "surface-elevated": "var(--surface-elevated)",
+        "surface-dark": "#09090B",
         border: "var(--border)",
         primary: {
           DEFAULT: "var(--primary-text)",
@@ -23,38 +24,59 @@ const config: Config = {
           DEFAULT: "var(--muted-text)",
           foreground: "var(--muted-text)",
         },
+        // Neo-Brutalist Theme Colors
+        purple: {
+          DEFAULT: "#5919F6",
+          primary: "#5919F6",
+          electric: "#6C2BFF",
+          light: "#F2F0F7",
+        },
+        yellow: {
+          DEFAULT: "#E8FF00",
+          acid: "#E8FF00",
+        },
+        black: {
+          DEFAULT: "#050505",
+          primary: "#050505",
+          card: "#09090B",
+        },
+        white: {
+          DEFAULT: "#FFFFFF",
+        },
+        // Financial Semantic Colors
         spend: {
-          DEFAULT: "var(--spend-green)",
-          foreground: "#0B0F14",
+          DEFAULT: "#21D99B",
+          foreground: "#050505",
         },
         tax: {
-          DEFAULT: "var(--tax-amber)",
-          foreground: "#0B0F14",
+          DEFAULT: "#FFBD45",
+          foreground: "#050505",
         },
         savings: {
-          DEFAULT: "var(--savings-periwinkle)",
-          foreground: "#0B0F14",
+          DEFAULT: "#8790FF",
+          foreground: "#050505",
         },
         danger: {
-          DEFAULT: "var(--danger-coral)",
+          DEFAULT: "#F2677A",
           foreground: "#FFFFFF",
         },
       },
-      borderRadius: {
-        card: "16px",
-      },
       fontFamily: {
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
-        mono: ["JetBrains Mono", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+        sans: ["var(--font-inter)", "Inter", "-apple-system", "sans-serif"],
+        display: ["var(--font-display)", "Barlow Condensed", "Impact", "sans-serif"],
+        mono: ["var(--font-mono)", "JetBrains Mono", "Courier New", "monospace"],
       },
-      animation: {
-        "pulse-subtle": "pulseSubtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      borderRadius: {
+        card: "6px",
+        neo: "4px",
       },
-      keyframes: {
-        pulseSubtle: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.7" },
-        },
+      boxShadow: {
+        brutal: "4px 4px 0 #050505",
+        "brutal-sm": "2px 2px 0 #050505",
+        "brutal-lg": "6px 6px 0 #050505",
+        "brutal-yellow": "4px 4px 0 #E8FF00",
+        "brutal-purple": "4px 4px 0 #5919F6",
+        "brutal-white": "4px 4px 0 #FFFFFF",
       },
     },
   },

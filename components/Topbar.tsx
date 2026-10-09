@@ -2,13 +2,15 @@
 
 import React from "react";
 import Link from "next/link";
-import { Bell, Wallet, Sparkles, ExternalLink } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Bell, Wallet, Sparkles } from "lucide-react";
 import { useVault } from "@/lib/store/vault-store";
 import { NetworkBadge } from "./NetworkBadge";
 import { ThemeToggle } from "./ThemeToggle";
 import { truncateAddress } from "@/lib/utils/format-usdc";
 
 export function Topbar() {
+  const pathname = usePathname();
   const {
     profile,
     isWalletConnected,
@@ -20,67 +22,101 @@ export function Topbar() {
 
   const unreadCount = notifications.filter((n) => !n.isRead).length;
 
+  const navLinks = [
+    { name: "OVERVIEW", href: "/app" },
+    { name: "VAULTS", href: "/app/vaults" },
+    { name: "RULES", href: "/app/rules" },
+    { name: "PAYMENTS", href: "/app/payments" },
+    { name: "CLIENTS", href: "/app/clients" },
+    { name: "ANALYTICS", href: "/app/analytics" },
+    { name: "DEADLINES", href: "/app/deadlines" },
+    { name: "EXPORT", href: "/app/export" },
+  ];
+
   return (
-    <header className="h-16 border-b border-border bg-surface/80 backdrop-blur-md sticky top-0 z-40 px-4 md:px-6 flex items-center justify-between">
-      {/* Left: Mobile brand & Desktop breadcrumb/greeting */}
-      <div className="flex items-center gap-3">
-        <Link href="/" className="md:hidden flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-primary text-background font-bold flex items-center justify-center text-xs">
+    <header className="h-16 border-b-2 border-[#050505] bg-[#09090B] text-white sticky top-0 z-40 px-4 md:px-6 flex items-center justify-between">
+      {/* Left: Brand and Navigation Tabs */}
+      <div className="flex items-center gap-6">
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="w-9 h-9 rounded-[4px] bg-[#5919F6] border-2 border-[#050505] text-white font-display font-black text-lg flex items-center justify-center neo-shadow-sm group-hover:bg-[#E8FF00] group-hover:text-[#050505] transition-colors">
             TV
           </div>
-          <span className="font-bold text-sm text-primary">Tax Vault</span>
+          <div>
+            <span className="font-display font-black text-lg tracking-tight uppercase block leading-none">
+              TAX VAULT
+            </span>
+            <span className="text-[10px] text-[#A1A1AA] font-mono tracking-wider">
+              FINTECH × WEB3
+            </span>
+          </div>
         </Link>
-        <div className="hidden md:block">
-          <h1 className="text-sm font-semibold text-primary">
-            Welcome back, <span className="text-spend">{profile.displayName}</span>
-          </h1>
-          <p className="text-[11px] text-muted">Non-custodial split enforcement active</p>
-        </div>
+
+        {/* Desktop Quick Nav Tabs */}
+        <nav className="hidden xl:flex items-center gap-1 font-display font-bold text-xs">
+          {navLinks.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`px-3 py-1.5 rounded-[4px] transition-all tracking-wider ${
+                  isActive
+                    ? "bg-[#5919F6] text-white border border-[#050505] neo-shadow-sm"
+                    : "text-[#B8B5C5] hover:text-white hover:bg-white/10"
+                }`}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
+        </nav>
       </div>
 
       {/* Right controls */}
-      <div className="flex items-center gap-2.5">
+      <div className="flex items-center gap-3">
         <NetworkBadge isDemo={profile.isSimulated} className="hidden sm:flex" />
 
-        {/* Demo simulator trigger */}
+        {/* Demo Simulator Trigger Button */}
         <button
           onClick={() => setIsDemoDrawerOpen(true)}
-          className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-elevated hover:bg-border border border-border text-xs font-medium text-tax transition-colors"
+          className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-[#E8FF00] hover:bg-yellow-300 text-[#050505] font-display font-black text-xs uppercase neo-btn tracking-wider"
           title="Open Payment Split Simulator"
         >
           <Sparkles className="w-3.5 h-3.5" />
-          <span>Simulator</span>
+          <span>SIMULATOR</span>
         </button>
 
-        {/* Notification bell */}
+        {/* Notification Bell */}
         <Link
           href="/app/notifications"
-          className="relative p-2 rounded-lg bg-surface hover:bg-surface-elevated border border-border text-muted hover:text-primary transition-colors"
+          className="relative p-2 rounded-[4px] bg-white text-[#050505] border-2 border-[#050505] neo-shadow-sm hover:bg-[#F2F0F7] transition-colors"
           aria-label="Notifications"
         >
           <Bell className="w-4 h-4" />
           {unreadCount > 0 && (
-            <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-tax text-black font-bold text-[10px] flex items-center justify-center">
+            <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#E8FF00] border border-[#050505] text-[#050505] font-black text-[9px] flex items-center justify-center font-mono">
               {unreadCount}
             </span>
           )}
         </Link>
 
         {/* Theme Toggle */}
-        <ThemeToggle />
+        <div className="hidden sm:block">
+          <ThemeToggle />
+        </div>
 
         {/* Wallet Connect Button */}
         <button
           onClick={() => setIsConnectModalOpen(true)}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-[4px] font-mono text-xs font-bold neo-btn tracking-tight ${
             isWalletConnected
-              ? "bg-surface-elevated text-primary border-border hover:border-muted"
-              : "bg-spend text-black border-spend hover:opacity-90"
+              ? "bg-white text-[#050505] hover:bg-[#F2F0F7]"
+              : "bg-[#5919F6] text-white hover:bg-[#6C2BFF]"
           }`}
         >
           <Wallet className="w-3.5 h-3.5" />
           <span>
-            {isWalletConnected ? truncateAddress(walletAddress, 4) : "Connect Wallet"}
+            {isWalletConnected ? truncateAddress(walletAddress, 4) : "CONNECT WALLET"}
           </span>
         </button>
       </div>

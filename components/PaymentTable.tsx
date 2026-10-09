@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Search, Download, ChevronLeft, ChevronRight, Eye, ArrowUpDown } from "lucide-react";
+import { Search, Download, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { PaymentRecordItem } from "@/lib/services/types";
-import { formatUSDC, truncateAddress } from "@/lib/utils/format-usdc";
+import { formatUSDC } from "@/lib/utils/format-usdc";
 import { PaymentDetailsDrawer } from "./PaymentDetailsDrawer";
 
 interface PaymentTableProps {
@@ -14,7 +14,7 @@ interface PaymentTableProps {
 
 export function PaymentTable({
   payments,
-  title = "Recent Incoming Payments",
+  title = "RECORDED TRANSACTIONS",
   showExport = true,
 }: PaymentTableProps) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -22,7 +22,6 @@ export function PaymentTable({
   const [selectedPayment, setSelectedPayment] = useState<PaymentRecordItem | null>(null);
   const pageSize = 8;
 
-  // Filter
   const filtered = payments.filter(
     (p) =>
       p.payerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -67,7 +66,7 @@ export function PaymentTable({
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `tax-vault-payments-${new Date().toISOString().split("T")[0]}.csv`);
+    link.setAttribute("download", `TaxVault-Audit-${new Date().toISOString().split("T")[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -75,93 +74,97 @@ export function PaymentTable({
 
   return (
     <>
-      <div className="bg-surface rounded-card border border-border overflow-hidden">
+      <div className="bg-white text-[#050505] rounded-[6px] border-2 border-[#050505] neo-shadow overflow-hidden">
         {/* Table Toolbar */}
-        <div className="p-4 border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="bg-[#050505] text-white px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b-2 border-[#050505]">
           <div>
-            <h3 className="text-sm font-semibold text-primary">{title}</h3>
-            <span className="text-xs text-muted">Atomic three-vault distributions</span>
+            <h3 className="font-display font-black text-sm uppercase tracking-wider text-white">
+              {title}
+            </h3>
+            <span className="text-[10px] text-[#A1A1AA] font-mono tracking-wider">
+              ATOMIC THREE-VAULT LEDGER
+            </span>
           </div>
 
           <div className="flex items-center gap-2">
             <div className="relative">
-              <Search className="w-3.5 h-3.5 text-muted absolute left-3 top-2.5" />
+              <Search className="w-3.5 h-3.5 text-[#050505] absolute left-3 top-2" />
               <input
                 type="text"
-                placeholder="Search payer, invoice..."
+                placeholder="Search payer, ref..."
                 value={searchTerm}
                 onChange={(e) => {
                   setSearchTerm(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="pl-8 pr-3 py-1.5 rounded-lg bg-surface-elevated border border-border text-xs text-primary placeholder-muted focus:outline-none focus:border-spend w-48 sm:w-60"
+                className="pl-8 pr-3 py-1 rounded bg-white border border-[#050505] text-xs font-mono text-black placeholder-[#696574] focus:outline-none w-48 sm:w-56"
               />
             </div>
 
             {showExport && (
               <button
                 onClick={handleExportCSV}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-elevated hover:bg-border border border-border text-xs font-medium text-muted hover:text-primary transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1 rounded bg-[#E8FF00] text-black font-display font-black text-xs uppercase neo-btn tracking-wider"
                 title="Download CSV"
               >
-                <Download className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">CSV</span>
+                <Download className="w-3.5 h-3.5 stroke-[2.5]" />
+                <span className="hidden sm:inline">CSV EXPORT</span>
               </button>
             )}
           </div>
         </div>
 
-        {/* Table Content */}
+        {/* Table Body */}
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-surface-elevated/60 text-muted uppercase font-medium border-b border-border text-[11px]">
+            <thead className="bg-[#F2F0F7] text-[#050505] uppercase font-display font-black border-b-2 border-[#050505] text-[11px] tracking-wider">
               <tr>
-                <th className="py-3 px-4">Date & Client</th>
-                <th className="py-3 px-4 font-mono">Gross</th>
-                <th className="py-3 px-4 font-mono text-spend">Spend (70%)</th>
-                <th className="py-3 px-4 font-mono text-tax">Tax (25%)</th>
-                <th className="py-3 px-4 font-mono text-savings">Savings (5%)</th>
-                <th className="py-3 px-4">Status</th>
-                <th className="py-3 px-4 text-right">Details</th>
+                <th className="py-3 px-4">DATE & CLIENT</th>
+                <th className="py-3 px-4 font-mono">GROSS</th>
+                <th className="py-3 px-4 font-mono text-[#050505]">SPEND (70%)</th>
+                <th className="py-3 px-4 font-mono text-[#050505]">TAX (25%)</th>
+                <th className="py-3 px-4 font-mono text-[#050505]">SAVINGS (5%)</th>
+                <th className="py-3 px-4">STATUS</th>
+                <th className="py-3 px-4 text-right">DETAILS</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border">
+            <tbody className="divide-y divide-[#E5E3ED] font-mono">
               {paginated.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="py-8 text-center text-muted">
-                    No transactions found matching your search.
+                  <td colSpan={7} className="py-8 text-center text-[#696574]">
+                    No transactions found.
                   </td>
                 </tr>
               ) : (
                 paginated.map((p) => (
-                  <tr key={p.id} className="hover:bg-surface-elevated/40 transition-colors">
-                    <td className="py-3 px-4">
-                      <div className="font-medium text-primary">{p.payerName}</div>
-                      <div className="text-[11px] text-muted font-mono">
+                  <tr key={p.id} className="hover:bg-[#F2F0F7] transition-colors">
+                    <td className="py-3 px-4 font-sans">
+                      <div className="font-bold text-[#050505]">{p.payerName}</div>
+                      <div className="text-[11px] text-[#696574] font-mono">
                         {new Date(p.timestamp).toLocaleDateString()} · {p.invoiceRef || "Direct Payment"}
                       </div>
                     </td>
-                    <td className="py-3 px-4 font-mono font-bold text-primary tnum">
+                    <td className="py-3 px-4 font-black text-[#050505] tnum">
                       {formatUSDC(p.grossAmount)}
                     </td>
-                    <td className="py-3 px-4 font-mono font-medium text-spend tnum">
+                    <td className="py-3 px-4 font-bold text-[#050505] tnum">
                       {formatUSDC(p.spendAmount)}
                     </td>
-                    <td className="py-3 px-4 font-mono font-medium text-tax tnum">
+                    <td className="py-3 px-4 font-bold text-[#050505] tnum">
                       {formatUSDC(p.taxAmount)}
                     </td>
-                    <td className="py-3 px-4 font-mono font-medium text-savings tnum">
+                    <td className="py-3 px-4 font-bold text-[#050505] tnum">
                       {formatUSDC(p.savingsAmount)}
                     </td>
                     <td className="py-3 px-4">
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-tax/15 text-tax border border-tax/30 uppercase">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-black uppercase bg-[#E8FF00] text-black border border-black neo-shadow-sm font-mono">
                         {p.status}
                       </span>
                     </td>
                     <td className="py-3 px-4 text-right">
                       <button
                         onClick={() => setSelectedPayment(p)}
-                        className="p-1 rounded hover:bg-surface-elevated text-muted hover:text-primary transition-colors"
+                        className="p-1 rounded hover:bg-white border border-transparent hover:border-[#050505] text-[#050505] transition-all"
                         title="View details"
                       >
                         <Eye className="w-4 h-4" />
@@ -176,7 +179,7 @@ export function PaymentTable({
 
         {/* Pagination Bar */}
         {totalPages > 1 && (
-          <div className="p-3 border-t border-border flex items-center justify-between text-xs text-muted">
+          <div className="p-3 border-t-2 border-[#050505] bg-[#F2F0F7] flex items-center justify-between text-xs font-mono font-bold text-[#050505]">
             <span>
               Showing {(currentPage - 1) * pageSize + 1} to{" "}
               {Math.min(currentPage * pageSize, filtered.length)} of {filtered.length} entries
@@ -185,15 +188,15 @@ export function PaymentTable({
               <button
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                className="p-1 rounded bg-surface-elevated border border-border disabled:opacity-40"
+                className="p-1 rounded bg-white border border-[#050505] disabled:opacity-40"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
-              <span className="px-2 font-mono text-primary">{currentPage} / {totalPages}</span>
+              <span className="px-2">{currentPage} / {totalPages}</span>
               <button
                 disabled={currentPage === totalPages}
                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                className="p-1 rounded bg-surface-elevated border border-border disabled:opacity-40"
+                className="p-1 rounded bg-white border border-[#050505] disabled:opacity-40"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -202,7 +205,6 @@ export function PaymentTable({
         )}
       </div>
 
-      {/* Details Drawer */}
       <PaymentDetailsDrawer
         payment={selectedPayment}
         onClose={() => setSelectedPayment(null)}

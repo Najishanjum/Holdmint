@@ -12,7 +12,7 @@ import {
   LineChart,
   Line,
 } from "recharts";
-import { TrendingUp, DollarSign, Calendar, BarChart2 } from "lucide-react";
+import { TrendingUp, DollarSign, Calendar, BarChart2, Activity, Zap } from "lucide-react";
 import { useVault } from "@/lib/store/vault-store";
 import { formatUSDC } from "@/lib/utils/format-usdc";
 
@@ -45,128 +45,164 @@ export default function AnalyticsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-border gap-3">
+      {/* Neo-Brutalist Header */}
+      <div className="bg-[#050505] neo-border neo-shadow p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-primary">Income & Reserve Analytics</h2>
-          <p className="text-xs text-muted mt-0.5">
-            Statistical breakdown of incoming client income and automated allocations
+          <div className="flex items-center gap-2 mb-1">
+            <span className="w-2.5 h-2.5 bg-[#E8FF00] inline-block animate-pulse"></span>
+            <span className="font-mono text-xs uppercase tracking-widest text-[#E8FF00]">
+              METRICS & TREASURY INTELLIGENCE
+            </span>
+          </div>
+          <h2 className="font-display text-3xl font-black uppercase tracking-tight text-white">
+            Income & Reserve Analytics
+          </h2>
+          <p className="text-xs text-white/60 font-mono mt-0.5">
+            Statistical breakdown of incoming client income and automated PDA splits
           </p>
         </div>
 
-        <div className="flex rounded-lg bg-surface-elevated p-0.5 border border-border text-xs">
+        {/* Range Filter */}
+        <div className="flex bg-[#121216] neo-border p-1 gap-1 self-start sm:self-auto">
           {[7, 30, 90].map((d) => (
             <button
               key={d}
               onClick={() => setFilterRange(d)}
-              className={`px-3 py-1 rounded-md font-medium transition-all ${
+              className={`px-3 py-1.5 font-mono text-xs font-black uppercase transition-all ${
                 filterRange === d
-                  ? "bg-spend/20 text-spend font-semibold"
-                  : "text-muted hover:text-primary"
+                  ? "bg-[#E8FF00] text-black"
+                  : "text-white/70 hover:text-white"
               }`}
             >
-              Last {d} Days
+              Last {d}D
             </button>
           ))}
         </div>
       </div>
 
       {/* Summary KPI Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-4 rounded-xl bg-surface border border-border space-y-1">
-          <span className="text-xs text-muted">Total Receipts</span>
-          <div className="text-xl md:text-2xl font-bold font-mono text-primary tnum">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="bg-white neo-border neo-shadow p-5 space-y-2 border-t-4 border-t-[#21D99B]">
+          <span className="font-mono text-xs uppercase text-black/60 font-bold block">
+            Total Gross Receipts
+          </span>
+          <div className="text-2xl md:text-3xl font-mono font-black text-black tnum">
             {formatUSDC(totalAmount)}
           </div>
-          <span className="text-[11px] text-spend font-medium flex items-center gap-1">
-            <TrendingUp className="w-3 h-3" />
+          <span className="font-mono text-[11px] text-[#050505] font-black flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full bg-[#21D99B]"></span>
             {count} completed splits
           </span>
         </div>
 
-        <div className="p-4 rounded-xl bg-surface border border-border space-y-1">
-          <span className="text-xs text-muted">Average Payment</span>
-          <div className="text-xl md:text-2xl font-bold font-mono text-primary tnum">
+        <div className="bg-white neo-border neo-shadow p-5 space-y-2 border-t-4 border-t-[#5919F6]">
+          <span className="font-mono text-xs uppercase text-black/60 font-bold block">
+            Average Inflow / Tx
+          </span>
+          <div className="text-2xl md:text-3xl font-mono font-black text-black tnum">
             ${avgPayment.toFixed(2)}
           </div>
-          <span className="text-[11px] text-muted">Across all clients</span>
+          <span className="font-mono text-[11px] text-black/60 font-bold">
+            Across active clients
+          </span>
         </div>
 
-        <div className="p-4 rounded-xl bg-surface border border-border space-y-1">
-          <span className="text-xs text-muted">Largest Single Payment</span>
-          <div className="text-xl md:text-2xl font-bold font-mono text-spend tnum">
+        <div className="bg-white neo-border neo-shadow p-5 space-y-2 border-t-4 border-t-[#E8FF00]">
+          <span className="font-mono text-xs uppercase text-black/60 font-bold block">
+            Largest Single Inflow
+          </span>
+          <div className="text-2xl md:text-3xl font-mono font-black text-[#5919F6] tnum">
             ${largestPayment.toFixed(2)}
           </div>
-          <span className="text-[11px] text-muted">Hyperion Tech</span>
+          <span className="font-mono text-[11px] text-black/60 font-bold">
+            Hyperion Tech DAO
+          </span>
         </div>
 
-        <div className="p-4 rounded-xl bg-surface border border-border space-y-1">
-          <span className="text-xs text-muted">Total Tax Protected</span>
-          <div className="text-xl md:text-2xl font-bold font-mono text-tax tnum">
+        <div className="bg-white neo-border neo-shadow p-5 space-y-2 border-t-4 border-t-[#FFBD45]">
+          <span className="font-mono text-xs uppercase text-black/60 font-bold block">
+            Total Tax Shielded
+          </span>
+          <div className="text-2xl md:text-3xl font-mono font-black text-[#FFBD45] tnum">
             {formatUSDC(profile.totalTaxReserved)}
           </div>
-          <span className="text-[11px] text-tax font-medium">Safe in Tax Vault</span>
+          <span className="font-mono text-[11px] text-black font-black flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full bg-[#FFBD45]"></span>
+            Locked in Tax PDA
+          </span>
         </div>
       </div>
 
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Gross Income by Payment */}
-        <div className="p-5 rounded-card bg-surface border border-border space-y-3">
-          <h3 className="text-sm font-semibold text-primary">Payment Distribution (USDC)</h3>
-          <div className="h-64 w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" opacity={0.5} vertical={false} />
-                <XAxis dataKey="date" stroke="var(--muted-text)" fontSize={10} tickLine={false} />
-                <YAxis stroke="var(--muted-text)" fontSize={10} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v}`} />
-                <Tooltip
-                  content={({ active, payload }) => {
-                    if (active && payload && payload.length) {
-                      const d = payload[0].payload;
-                      return (
-                        <div className="p-2.5 rounded-lg bg-surface-elevated border border-border shadow-lg text-xs">
-                          <div className="font-semibold text-primary">{d.client}</div>
-                          <div className="text-muted">{d.date}</div>
-                          <div className="font-mono text-spend mt-1">Gross: ${d.gross.toFixed(2)}</div>
-                        </div>
-                      );
-                    }
-                    return null;
-                  }}
-                />
-                <Bar dataKey="gross" fill="#34D399" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+        <div className="bg-white neo-border neo-shadow overflow-hidden">
+          <div className="bg-[#050505] text-white px-4 py-2.5 flex items-center justify-between border-b-2 border-black font-mono text-xs font-bold uppercase">
+            <span>PAYMENT DISTRIBUTION (USDC)</span>
+            <span className="text-[#21D99B] font-mono">SPLIT ENFORCED</span>
+          </div>
+
+          <div className="p-5">
+            <div className="h-64 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" vertical={false} />
+                  <XAxis dataKey="date" stroke="#050505" fontSize={11} fontFamily="monospace" tickLine={false} />
+                  <YAxis stroke="#050505" fontSize={11} fontFamily="monospace" tickLine={false} axisLine={false} tickFormatter={(v) => `$${v}`} />
+                  <Tooltip
+                    content={({ active, payload }) => {
+                      if (active && payload && payload.length) {
+                        const d = payload[0].payload;
+                        return (
+                          <div className="p-3 bg-[#050505] text-white neo-border border-[#E8FF00] font-mono text-xs space-y-1">
+                            <div className="font-bold text-[#E8FF00]">{d.client}</div>
+                            <div className="text-white/70">{d.date}</div>
+                            <div className="font-black text-[#21D99B]">Gross: ${d.gross.toFixed(2)}</div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    }}
+                  />
+                  <Bar dataKey="gross" fill="#21D99B" stroke="#050505" strokeWidth={1.5} radius={[0, 0, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </div>
 
         {/* Tax Reserve Growth Cumulative */}
-        <div className="p-5 rounded-card bg-surface border border-border space-y-3">
-          <h3 className="text-sm font-semibold text-primary">Tax Reserve Accumulation (USDC)</h3>
-          <div className="h-64 w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" opacity={0.5} vertical={false} />
-                <XAxis dataKey="date" stroke="var(--muted-text)" fontSize={10} tickLine={false} />
-                <YAxis stroke="var(--muted-text)" fontSize={10} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v}`} />
-                <Tooltip
-                  content={({ active, payload }) => {
-                    if (active && payload && payload.length) {
-                      const d = payload[0].payload;
-                      return (
-                        <div className="p-2.5 rounded-lg bg-surface-elevated border border-border shadow-lg text-xs">
-                          <div className="font-semibold text-primary">{d.client}</div>
-                          <div className="font-mono text-tax">Tax Reserved: ${d.tax.toFixed(2)}</div>
-                        </div>
-                      );
-                    }
-                    return null;
-                  }}
-                />
-                <Line type="monotone" dataKey="tax" stroke="#F5B44A" strokeWidth={2.5} dot={{ fill: "#F5B44A", r: 3 }} />
-              </LineChart>
-            </ResponsiveContainer>
+        <div className="bg-white neo-border neo-shadow overflow-hidden">
+          <div className="bg-[#050505] text-white px-4 py-2.5 flex items-center justify-between border-b-2 border-black font-mono text-xs font-bold uppercase">
+            <span>TAX RESERVE ACCUMULATION (USDC)</span>
+            <span className="text-[#FFBD45] font-mono">NON-CUSTODIAL</span>
+          </div>
+
+          <div className="p-5">
+            <div className="h-64 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" vertical={false} />
+                  <XAxis dataKey="date" stroke="#050505" fontSize={11} fontFamily="monospace" tickLine={false} />
+                  <YAxis stroke="#050505" fontSize={11} fontFamily="monospace" tickLine={false} axisLine={false} tickFormatter={(v) => `$${v}`} />
+                  <Tooltip
+                    content={({ active, payload }) => {
+                      if (active && payload && payload.length) {
+                        const d = payload[0].payload;
+                        return (
+                          <div className="p-3 bg-[#050505] text-white neo-border border-[#FFBD45] font-mono text-xs space-y-1">
+                            <div className="font-bold text-white">{d.client}</div>
+                            <div className="font-black text-[#FFBD45]">Tax Reserved: ${d.tax.toFixed(2)}</div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    }}
+                  />
+                  <Line type="stepAfter" dataKey="tax" stroke="#5919F6" strokeWidth={3} dot={{ fill: "#FFBD45", stroke: "#050505", strokeWidth: 2, r: 5 }} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </div>
       </div>

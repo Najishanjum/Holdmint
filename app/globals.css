@@ -4,30 +4,34 @@
 
 @layer base {
   :root {
-    /* Light Mode */
-    --background: #F7F9FC;
+    --background: #09090B;
     --surface: #FFFFFF;
-    --surface-elevated: #EDF2F7;
-    --border: #DDE3EA;
-    --primary-text: #0B0F14;
-    --muted-text: #5A6675;
-    --spend-green: #10B981;
-    --tax-amber: #D97706;
-    --savings-periwinkle: #4F46E5;
-    --danger-coral: #E11D48;
+    --surface-elevated: #F2F0F7;
+    --border: #050505;
+    --primary-text: #050505;
+    --muted-text: #696574;
+    --primary-purple: #5919F6;
+    --electric-purple: #6C2BFF;
+    --acid-yellow: #E8FF00;
+    --spend-green: #21D99B;
+    --tax-amber: #FFBD45;
+    --savings-periwinkle: #8790FF;
+    --danger-coral: #F2677A;
   }
 
   .dark {
-    /* Exact Requested Dark Tokens */
-    --background: #0B0F14;
-    --surface: #121821;
-    --surface-elevated: #171F2A;
-    --border: #1E2733;
-    --primary-text: #F2F5F9;
-    --muted-text: #8A97A8;
-    --spend-green: #34D399;
-    --tax-amber: #F5B44A;
-    --savings-periwinkle: #7C8CFF;
+    --background: #09090B;
+    --surface: #FFFFFF;
+    --surface-elevated: #F2F0F7;
+    --border: #050505;
+    --primary-text: #050505;
+    --muted-text: #696574;
+    --primary-purple: #5919F6;
+    --electric-purple: #6C2BFF;
+    --acid-yellow: #E8FF00;
+    --spend-green: #21D99B;
+    --tax-amber: #FFBD45;
+    --savings-periwinkle: #8790FF;
     --danger-coral: #F2677A;
   }
 
@@ -37,24 +41,94 @@
 
   body {
     background-color: var(--background);
-    color: var(--primary-text);
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    color: #F4F4F5;
     font-family: var(--font-inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
     min-height: 100vh;
     overflow-x: hidden;
   }
 }
 
+/* Neo-Brutalist Utility Classes */
+.neo-border {
+  border: 2px solid #050505;
+}
+
+.neo-border-sm {
+  border: 1px solid #050505;
+}
+
+.neo-border-lg {
+  border: 3px solid #050505;
+}
+
+.neo-shadow {
+  box-shadow: 4px 4px 0 #050505;
+}
+
+.neo-shadow-sm {
+  box-shadow: 2px 2px 0 #050505;
+}
+
+.neo-shadow-lg {
+  box-shadow: 6px 6px 0 #050505;
+}
+
+.neo-shadow-yellow {
+  box-shadow: 4px 4px 0 #E8FF00;
+}
+
+.neo-shadow-purple {
+  box-shadow: 4px 4px 0 #5919F6;
+}
+
+.neo-btn {
+  border: 2px solid #050505;
+  box-shadow: 3px 3px 0 #050505;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neo-btn:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 #050505;
+}
+
+.neo-btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #050505;
+}
+
+.font-display {
+  font-family: var(--font-display, "Barlow Condensed", "Impact", sans-serif);
+  letter-spacing: -0.02em;
+}
+
 .tnum {
   font-variant-numeric: tabular-nums;
 }
 
+/* Marquee ticker animation */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 25s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .animate-ticker {
+    animation: none;
+  }
   * {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
 
@@ -64,12 +138,12 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: #09090B;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 3px;
+  background: #27272A;
+  border: 1px solid #050505;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-text);
+  background: #E8FF00;
 }

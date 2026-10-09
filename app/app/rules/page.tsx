@@ -16,9 +16,9 @@ export default function RulesPage() {
   const [proposeMsg, setProposeMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   const presets = [
-    { name: "Balanced (Recommended)", spend: 70, tax: 25, savings: 5 },
-    { name: "Tax First Safeguard", spend: 60, tax: 35, savings: 5 },
-    { name: "Aggressive Savings", spend: 60, tax: 25, savings: 15 },
+    { name: "BALANCED (RECOMMENDED)", spend: 70, tax: 25, savings: 5 },
+    { name: "TAX FIRST SAFEGUARD", spend: 60, tax: 35, savings: 5 },
+    { name: "AGGRESSIVE SAVINGS", spend: 60, tax: 25, savings: 15 },
   ];
 
   const totalPercent = spendPercent + taxPercent + savingsPercent;
@@ -34,7 +34,7 @@ export default function RulesPage() {
     if (res.success) {
       setProposeMsg({
         type: "success",
-        text: "Rule proposal submitted! 24-hour cooldown timelock is now running before activation.",
+        text: "Rule proposal submitted! 24-hour cooldown timelock is running before activation.",
       });
     } else {
       setProposeMsg({ type: "error", text: res.error || "Proposal failed." });
@@ -45,222 +45,230 @@ export default function RulesPage() {
     <div className="space-y-6">
       <PendingRuleBanner />
 
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-border gap-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b-2 border-[#050505] gap-2">
         <div>
-          <h2 className="text-xl font-bold text-primary">Split Rules & Timelock Governance</h2>
-          <p className="text-xs text-muted mt-0.5">
+          <h2 className="font-display font-black text-2xl uppercase tracking-tight text-white">
+            SPLIT RULES & TIMELOCK GOVERNANCE
+          </h2>
+          <p className="text-xs text-[#B8B5C5] font-sans">
             Worker-controlled income distribution formulas with timelock protection
           </p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left 2 Cols: Sliders & Form */}
+        {/* Left Column: Technical Settings Console */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-surface rounded-card border border-border p-6 space-y-6">
-            <div>
-              <h3 className="text-sm font-semibold text-primary">Configure Split Percentages</h3>
-              <p className="text-xs text-muted mt-0.5">
-                All values must sum to 100.00%. Tax must meet the minimum 5% safeguard.
-              </p>
+          <div className="bg-white text-[#050505] rounded-[6px] border-2 border-[#050505] neo-shadow overflow-hidden">
+            <div className="bg-[#050505] text-white px-4 py-2.5 flex items-center justify-between border-b-2 border-[#050505]">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#E8FF00] inline-block" />
+                <h3 className="font-display font-black text-xs uppercase tracking-wider text-white">
+                  RATIO CONFIGURATION CONSOLE
+                </h3>
+              </div>
+              <span className="font-mono text-[10px] text-[#E8FF00] font-bold">10,000 BPS SUM</span>
             </div>
 
-            {/* Presets */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              {presets.map((p) => (
-                <button
-                  key={p.name}
-                  type="button"
-                  onClick={() => {
-                    setSpendPercent(p.spend);
-                    setTaxPercent(p.tax);
-                    setSavingsPercent(p.savings);
-                  }}
-                  className="p-3 rounded-xl bg-surface-elevated hover:bg-border border border-border text-left transition-all text-xs"
+            <div className="p-6 space-y-6 font-mono text-xs">
+              {/* Presets */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 font-display">
+                {presets.map((p) => (
+                  <button
+                    key={p.name}
+                    type="button"
+                    onClick={() => {
+                      setSpendPercent(p.spend);
+                      setTaxPercent(p.tax);
+                      setSavingsPercent(p.savings);
+                    }}
+                    className="p-3 rounded-[4px] bg-[#F2F0F7] hover:bg-[#E8FF00] border-2 border-[#050505] text-left transition-all text-xs font-bold"
+                  >
+                    <div className="font-black text-[#050505]">{p.name}</div>
+                    <div className="font-mono text-[#696574] text-[10px] mt-0.5">
+                      {p.spend}% / {p.tax}% / {p.savings}%
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {/* Sliders */}
+              <div className="space-y-5 pt-2">
+                {/* Spend */}
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-xs font-bold">
+                    <span className="text-[#050505] font-display font-black text-sm uppercase">
+                      Spend Allocation (Liquid)
+                    </span>
+                    <div className="flex items-center gap-1 font-mono">
+                      <input
+                        type="number"
+                        value={spendPercent}
+                        onChange={(e) => setSpendPercent(Number(e.target.value))}
+                        className="w-16 px-2 py-1 rounded bg-[#F2F0F7] border border-[#050505] text-xs font-bold text-[#050505] text-right"
+                      />
+                      <span>%</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="90"
+                    value={spendPercent}
+                    onChange={(e) => setSpendPercent(Number(e.target.value))}
+                    className="w-full accent-[#21D99B] h-2 rounded bg-[#F2F0F7] cursor-pointer border border-[#050505]"
+                  />
+                </div>
+
+                {/* Tax */}
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-xs font-bold">
+                    <span className="text-[#050505] font-display font-black text-sm uppercase">
+                      Tax Allocation (Locked to Payee)
+                    </span>
+                    <div className="flex items-center gap-1 font-mono">
+                      <input
+                        type="number"
+                        value={taxPercent}
+                        onChange={(e) => setTaxPercent(Number(e.target.value))}
+                        className="w-16 px-2 py-1 rounded bg-[#F2F0F7] border border-[#050505] text-xs font-bold text-[#050505] text-right"
+                      />
+                      <span>%</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    min="5"
+                    max="60"
+                    value={taxPercent}
+                    onChange={(e) => setTaxPercent(Number(e.target.value))}
+                    className="w-full accent-[#FFBD45] h-2 rounded bg-[#F2F0F7] cursor-pointer border border-[#050505]"
+                  />
+                </div>
+
+                {/* Savings */}
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-xs font-bold">
+                    <span className="text-[#050505] font-display font-black text-sm uppercase">
+                      Savings Allocation (Time-Locked)
+                    </span>
+                    <div className="flex items-center gap-1 font-mono">
+                      <input
+                        type="number"
+                        value={savingsPercent}
+                        onChange={(e) => setSavingsPercent(Number(e.target.value))}
+                        className="w-16 px-2 py-1 rounded bg-[#F2F0F7] border border-[#050505] text-xs font-bold text-[#050505] text-right"
+                      />
+                      <span>%</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="40"
+                    value={savingsPercent}
+                    onChange={(e) => setSavingsPercent(Number(e.target.value))}
+                    className="w-full accent-[#8790FF] h-2 rounded bg-[#F2F0F7] cursor-pointer border border-[#050505]"
+                  />
+                </div>
+              </div>
+
+              {/* Sum Status */}
+              <div className="flex items-center justify-between p-3 rounded-[4px] bg-[#F2F0F7] border border-[#050505]">
+                <span className="text-[#696574] font-bold">Total Basis Points Sum:</span>
+                <span
+                  className={`font-black ${
+                    isValid ? "text-[#050505]" : "text-[#F2677A]"
+                  }`}
                 >
-                  <div className="font-semibold text-primary">{p.name}</div>
-                  <div className="font-mono text-muted text-[11px] mt-0.5">
-                    {p.spend}% / {p.tax}% / {p.savings}%
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            {/* Sliders */}
-            <div className="space-y-5 pt-2">
-              {/* Spend */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-semibold text-spend">Spend Allocation</span>
-                  <div className="flex items-center gap-1">
-                    <input
-                      type="number"
-                      value={spendPercent}
-                      onChange={(e) => setSpendPercent(Number(e.target.value))}
-                      className="w-16 px-2 py-1 rounded bg-surface-elevated border border-border text-xs font-mono text-primary text-right"
-                    />
-                    <span className="text-muted">%</span>
-                  </div>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="90"
-                  value={spendPercent}
-                  onChange={(e) => setSpendPercent(Number(e.target.value))}
-                  className="w-full accent-spend h-2 rounded bg-surface-elevated cursor-pointer"
-                />
+                  {totalPercent}% {isValid ? "(Valid: 10,000 bps)" : "(Must equal 100%)"}
+                </span>
               </div>
 
-              {/* Tax */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-semibold text-tax">Tax Allocation (Locked)</span>
-                  <div className="flex items-center gap-1">
-                    <input
-                      type="number"
-                      value={taxPercent}
-                      onChange={(e) => setTaxPercent(Number(e.target.value))}
-                      className="w-16 px-2 py-1 rounded bg-surface-elevated border border-border text-xs font-mono text-primary text-right"
-                    />
-                    <span className="text-muted">%</span>
-                  </div>
-                </div>
-                <input
-                  type="range"
-                  min="5"
-                  max="60"
-                  value={taxPercent}
-                  onChange={(e) => setTaxPercent(Number(e.target.value))}
-                  className="w-full accent-tax h-2 rounded bg-surface-elevated cursor-pointer"
-                />
+              <div className="p-3 rounded-[4px] bg-[#E8FF00] border-2 border-[#050505] text-[#050505] flex items-start gap-2 leading-relaxed">
+                <Clock className="w-4 h-4 shrink-0 mt-0.5" />
+                <span>
+                  Rule changes require a 24-hour timelock cooldown. Active percentages remain in effect until the cooldown has elapsed.
+                </span>
               </div>
 
-              {/* Savings */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-semibold text-savings">Savings Allocation</span>
-                  <div className="flex items-center gap-1">
-                    <input
-                      type="number"
-                      value={savingsPercent}
-                      onChange={(e) => setSavingsPercent(Number(e.target.value))}
-                      className="w-16 px-2 py-1 rounded bg-surface-elevated border border-border text-xs font-mono text-primary text-right"
-                    />
-                    <span className="text-muted">%</span>
-                  </div>
+              {proposeMsg && (
+                <div
+                  className={`p-3.5 rounded-[4px] border-2 border-[#050505] flex items-center gap-2 ${
+                    proposeMsg.type === "success"
+                      ? "bg-[#21D99B]/20 text-[#050505]"
+                      : "bg-[#F2677A]/20 text-[#F2677A]"
+                  }`}
+                >
+                  {proposeMsg.type === "success" ? (
+                    <CheckCircle2 className="w-4 h-4 shrink-0" />
+                  ) : (
+                    <AlertTriangle className="w-4 h-4 shrink-0" />
+                  )}
+                  <span>{proposeMsg.text}</span>
                 </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="40"
-                  value={savingsPercent}
-                  onChange={(e) => setSavingsPercent(Number(e.target.value))}
-                  className="w-full accent-savings h-2 rounded bg-surface-elevated cursor-pointer"
-                />
-              </div>
-            </div>
+              )}
 
-            {/* Sum validation status */}
-            <div className="flex items-center justify-between p-3 rounded-xl bg-surface-elevated border border-border text-xs">
-              <span className="text-muted">Total Basis Points Sum:</span>
-              <span
-                className={`font-mono font-bold ${
-                  isValid ? "text-spend" : "text-danger"
-                }`}
+              <button
+                disabled={!isValid}
+                onClick={handlePropose}
+                className="w-full py-3 rounded-[4px] bg-[#5919F6] text-white font-display font-black text-xs uppercase neo-btn tracking-wider hover:bg-[#6C2BFF] disabled:opacity-40"
               >
-                {totalPercent}% {isValid ? "(Valid: 10,000 bps)" : "(Must equal 100%)"}
-              </span>
+                PROPOSE RULE SPLIT UPDATE (24H COOLDOWN)
+              </button>
             </div>
-
-            {/* Notice about delayed cooldown */}
-            <div className="p-3.5 rounded-xl bg-surface-elevated border border-border text-xs text-muted flex items-start gap-2.5">
-              <Clock className="w-4 h-4 text-tax shrink-0 mt-0.5" />
-              <span>
-                To prevent accidental or impulsive reductions of tax reserves, rule changes are subjected to a 24-hour smart-contract cooldown. Active rules remain in effect until the cooldown passes and you confirm application.
-              </span>
-            </div>
-
-            {proposeMsg && (
-              <div
-                className={`p-3.5 rounded-xl border text-xs flex items-center gap-2 ${
-                  proposeMsg.type === "success"
-                    ? "bg-spend/10 border-spend/30 text-spend"
-                    : "bg-danger/10 border-danger/30 text-danger"
-                }`}
-              >
-                {proposeMsg.type === "success" ? (
-                  <CheckCircle2 className="w-4 h-4 shrink-0" />
-                ) : (
-                  <AlertTriangle className="w-4 h-4 shrink-0" />
-                )}
-                <span>{proposeMsg.text}</span>
-              </div>
-            )}
-
-            <button
-              disabled={!isValid}
-              onClick={handlePropose}
-              className="w-full py-3 rounded-xl bg-spend hover:bg-spend/90 text-black font-semibold text-xs transition-all disabled:opacity-40"
-            >
-              Propose Rule Split Update (24h Cooldown)
-            </button>
           </div>
         </div>
 
-        {/* Right Col: Live Base-Unit Split Calculator */}
-        <div className="space-y-6">
-          <div className="bg-surface rounded-card border border-border p-6 space-y-4">
-            <div>
-              <h3 className="text-sm font-semibold text-primary">Precision Split Tester</h3>
-              <p className="text-xs text-muted mt-0.5">
-                Simulate rounding and 6-decimal integer base units
-              </p>
+        {/* Right Column: Live Precision Calculator */}
+        <div className="space-y-6 font-mono">
+          <div className="bg-white text-[#050505] rounded-[6px] border-2 border-[#050505] neo-shadow overflow-hidden">
+            <div className="bg-[#050505] text-white px-4 py-2.5 flex items-center justify-between border-b-2 border-[#050505]">
+              <span className="font-display font-black text-xs uppercase tracking-wider text-white">
+                PRECISION SPLIT TESTER
+              </span>
+              <span className="text-[10px] text-[#A1A1AA]">6-DECIMAL INTEGER</span>
             </div>
 
-            <div>
-              <label className="text-xs font-medium text-muted uppercase block mb-1">
-                Test Payment Amount
-              </label>
-              <div className="relative">
-                <span className="absolute left-3 top-2.5 text-muted text-sm font-semibold">$</span>
-                <input
-                  type="text"
-                  value={testAmountStr}
-                  onChange={(e) => setTestAmountStr(e.target.value)}
-                  className="w-full bg-surface-elevated border border-border rounded-xl pl-8 pr-3 py-2 text-sm font-mono text-primary focus:outline-none focus:border-spend"
-                />
+            <div className="p-5 space-y-4 text-xs">
+              <div>
+                <label className="text-[11px] font-bold text-[#696574] uppercase block mb-1">
+                  Test Payment Amount
+                </label>
+                <div className="relative">
+                  <span className="absolute left-3 top-2.5 text-[#050505] text-sm font-bold">$</span>
+                  <input
+                    type="text"
+                    value={testAmountStr}
+                    onChange={(e) => setTestAmountStr(e.target.value)}
+                    className="w-full bg-[#F2F0F7] border-2 border-[#050505] rounded-[4px] pl-8 pr-3 py-2 text-sm font-bold text-[#050505] focus:outline-none focus:bg-white"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="p-4 rounded-xl bg-surface-elevated border border-border space-y-3 text-xs">
-              <div className="flex justify-between items-center">
-                <span className="text-muted">Spend Allocation:</span>
-                <span className="font-mono font-bold text-spend">
-                  {formatUSDC(testSplit.spendAmount)}
-                </span>
+              <div className="p-3.5 rounded-[4px] bg-[#F2F0F7] border border-[#050505] space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-[#696574]">Spend Allocation:</span>
+                  <span className="font-black text-[#050505]">{formatUSDC(testSplit.spendAmount)}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-[#696574]">Tax Vault (Locked):</span>
+                  <span className="font-black text-[#050505]">{formatUSDC(testSplit.taxAmount)}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-[#696574]">Savings Vault:</span>
+                  <span className="font-black text-[#050505]">{formatUSDC(testSplit.savingsAmount)}</span>
+                </div>
+                <div className="pt-2 border-t border-[#050505] flex justify-between items-center text-[10px] text-[#696574]">
+                  <span>Base Units:</span>
+                  <span>{testSplit.grossAmount.toString()} units</span>
+                </div>
               </div>
-              <div className="flex justify-between items-center">
-                <span className="text-muted">Tax Vault (Locked):</span>
-                <span className="font-mono font-bold text-tax">
-                  {formatUSDC(testSplit.taxAmount)}
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-muted">Savings Vault:</span>
-                <span className="font-mono font-bold text-savings">
-                  {formatUSDC(testSplit.savingsAmount)}
-                </span>
-              </div>
-              <div className="pt-2 border-t border-border flex justify-between items-center text-[11px] text-muted font-mono">
-                <span>Base Units:</span>
-                <span>{testSplit.grossAmount.toString()} units</span>
-              </div>
-            </div>
 
-            <div className="text-[11px] text-muted leading-relaxed">
-              Rounding Invariant: Any integer remainder is strictly allocated to the Spend vault so that{" "}
-              <code className="text-primary font-mono">spend + tax + savings == amount</code> is always satisfied.
+              <div className="text-[11px] text-[#696574] leading-relaxed">
+                Rounding Invariant: Division remainders are awarded to Spend so that{" "}
+                <code className="text-[#050505] font-bold">spend + tax + savings == gross</code> is preserved.
+              </div>
             </div>
           </div>
         </div>

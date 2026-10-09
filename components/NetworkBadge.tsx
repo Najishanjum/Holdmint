@@ -9,14 +9,14 @@ export function NetworkBadge({
   className?: string;
 }) {
   return (
-    <div className={cn("flex items-center gap-1.5", className)}>
-      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-surface-elevated border border-border text-primary">
-        <span className="w-1.5 h-1.5 rounded-full bg-spend animate-pulse" />
-        <span>Solana Devnet</span>
+    <div className={cn("flex items-center gap-1.5 font-mono text-xs", className)}>
+      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-[4px] bg-white border-2 border-[#050505] text-[#050505] font-bold neo-shadow-sm">
+        <span className="w-2 h-2 rounded-full bg-[#21D99B] animate-pulse" />
+        <span className="uppercase text-[11px]">SOLANA DEVNET</span>
       </div>
       {isDemo && (
-        <span className="px-2 py-0.5 rounded text-[10px] font-semibold tracking-wider bg-tax/15 text-tax border border-tax/30 uppercase">
-          Simulated
+        <span className="px-2 py-1 rounded-[4px] text-[10px] font-extrabold tracking-wider bg-[#E8FF00] text-[#050505] border-2 border-[#050505] uppercase neo-shadow-sm">
+          SIMULATED
         </span>
       )}
     </div>

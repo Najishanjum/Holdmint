@@ -48,16 +48,16 @@ export default function FAQPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-primary flex flex-col justify-between">
-      <header className="border-b border-border bg-surface/80 backdrop-blur-md sticky top-0 z-40">
+    <div className="min-h-screen bg-[#09090B] text-white flex flex-col justify-between">
+      <header className="border-b-2 border-black bg-[#050505] sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <ArrowLeft className="w-4 h-4 text-muted" />
-            <span className="font-bold text-sm">Tax Vault</span>
+          <Link href="/" className="flex items-center gap-2 font-mono text-xs uppercase font-bold text-white hover:text-[#E8FF00] transition-colors">
+            <ArrowLeft className="w-4 h-4 text-[#E8FF00]" />
+            <span>TAX VAULT HOME</span>
           </Link>
           <Link
             href="/app"
-            className="px-3.5 py-1.5 rounded-xl bg-spend text-black font-semibold text-xs"
+            className="neo-btn px-4 py-2 bg-[#E8FF00] text-black font-mono font-black text-xs uppercase tracking-wider neo-border neo-shadow hover:bg-[#d8ed00]"
           >
             Launch App
           </Link>
@@ -66,36 +66,39 @@ export default function FAQPage() {
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-12 space-y-10 flex-1">
         <div className="space-y-3">
-          <span className="text-xs font-semibold uppercase text-spend tracking-wider">
-            Clear Answers & Guidance
-          </span>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-primary">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="w-2.5 h-2.5 bg-[#E8FF00] inline-block animate-pulse"></span>
+            <span className="font-mono text-xs uppercase tracking-widest text-[#E8FF00]">
+              PROTOCOL KNOWLEDGE BASE
+            </span>
+          </div>
+          <h1 className="font-display text-4xl sm:text-5xl font-black uppercase tracking-tight text-white">
             Frequently Asked Questions
           </h1>
-          <p className="text-sm text-muted leading-relaxed">
+          <p className="font-mono text-xs text-white/60 leading-relaxed">
             Everything you need to know about non-custodial vault mechanics, smart-contract safeguards, and product boundaries.
           </p>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {faqs.map((faq, idx) => (
             <div
               key={idx}
-              className="bg-surface rounded-card border border-border overflow-hidden transition-all"
+              className="bg-white neo-border neo-shadow overflow-hidden transition-all"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full p-5 text-left flex items-center justify-between text-sm font-semibold text-primary hover:text-spend transition-colors"
+                className="w-full p-5 text-left flex items-center justify-between text-sm font-display font-black uppercase text-black hover:bg-[#E8FF00]/15 transition-colors"
               >
-                <span>{faq.q}</span>
+                <span className="tracking-tight text-base sm:text-lg">{faq.q}</span>
                 <ChevronDown
-                  className={`w-4 h-4 text-muted transition-transform shrink-0 ml-4 ${
+                  className={`w-5 h-5 text-black transition-transform shrink-0 ml-4 ${
                     openIndex === idx ? "rotate-180" : ""
                   }`}
                 />
               </button>
               {openIndex === idx && (
-                <div className="px-5 pb-5 text-xs text-muted leading-relaxed border-t border-border/50 pt-3">
+                <div className="px-5 pb-5 text-xs font-mono text-black/80 leading-relaxed border-t-2 border-black pt-4 bg-[#F2F0F7]">
                   {faq.a}
                 </div>
               )}
@@ -103,22 +106,26 @@ export default function FAQPage() {
           ))}
         </div>
 
-        <div className="p-6 rounded-card bg-surface border border-border text-center space-y-3">
-          <h3 className="text-sm font-bold text-primary">Ready to test the split simulator?</h3>
-          <p className="text-xs text-muted">
-            Experience atomic 3-vault distributions in our interactive sandbox.
+        <div className="p-8 bg-white neo-border neo-shadow text-center space-y-4">
+          <h3 className="font-display text-2xl font-black uppercase tracking-tight text-black">
+            Ready to test the split simulator?
+          </h3>
+          <p className="text-xs font-mono text-black/70 max-w-md mx-auto">
+            Experience atomic 3-vault distributions in our real-time interactive devnet sandbox.
           </p>
-          <Link
-            href="/demo"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-spend text-black font-semibold text-xs"
-          >
-            <span>Launch Interactive Demo</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          <div>
+            <Link
+              href="/demo"
+              className="neo-btn inline-flex items-center gap-2 px-6 py-3 bg-[#5919F6] text-white font-mono font-black text-xs uppercase tracking-wider neo-border neo-shadow hover:bg-[#4d13dd]"
+            >
+              <span>Launch Interactive Demo</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </main>
 
-      <footer className="border-t border-border py-6 px-4 text-center bg-surface">
+      <footer className="border-t-2 border-black py-6 px-4 text-center bg-[#050505]">
         <TaxDisclaimer className="justify-center" />
       </footer>
     </div>

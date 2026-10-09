@@ -21,33 +21,33 @@ export function VaultCard({ type, balance, percentage }: VaultCardProps) {
 
   const configs = {
     spend: {
-      title: "Spend Vault",
-      color: "text-spend",
-      bgColor: "bg-spend/10",
-      borderColor: "border-spend/30",
-      accentBar: "bg-spend",
+      title: "SPEND VAULT",
+      color: "text-[#21D99B]",
+      bgColor: "bg-[#21D99B]/15",
+      badgeColor: "bg-[#21D99B] text-[#050505]",
+      accentBar: "bg-[#21D99B]",
       description: "Liquid operational capital for daily freelancer business expenses.",
-      actionLabel: "Withdraw to Wallet",
+      actionLabel: "WITHDRAW TO WALLET",
       icon: Unlock,
     },
     tax: {
-      title: "Tax Vault",
-      color: "text-tax",
-      bgColor: "bg-tax/10",
-      borderColor: "border-tax/30",
-      accentBar: "bg-tax",
+      title: "TAX VAULT",
+      color: "text-[#FFBD45]",
+      bgColor: "bg-[#FFBD45]/15",
+      badgeColor: "bg-[#FFBD45] text-[#050505]",
+      accentBar: "bg-[#FFBD45]",
       description: "Smart contract protected. Release restricted solely to approved tax payee.",
-      actionLabel: "Release to Payee",
+      actionLabel: "RELEASE TO PAYEE",
       icon: Lock,
     },
     savings: {
-      title: "Savings Vault",
-      color: "text-savings",
-      bgColor: "bg-savings/10",
-      borderColor: "border-savings/30",
-      accentBar: "bg-savings",
+      title: "SAVINGS VAULT",
+      color: "text-[#8790FF]",
+      bgColor: "bg-[#8790FF]/15",
+      badgeColor: "bg-[#8790FF] text-[#050505]",
+      accentBar: "bg-[#8790FF]",
       description: "Time-locked treasury for long-term reserves and emergency buffers.",
-      actionLabel: "Withdraw Savings",
+      actionLabel: "WITHDRAW SAVINGS",
       icon: Clock,
     },
   };
@@ -103,139 +103,147 @@ export function VaultCard({ type, balance, percentage }: VaultCardProps) {
 
   return (
     <>
-      <div className="bg-surface rounded-card border border-border p-5 relative overflow-hidden flex flex-col justify-between hover:border-border/80 transition-all shadow-sm">
-        {/* Accent Bar */}
-        <div className={`absolute top-0 left-0 right-0 h-1 ${currentConfig.accentBar}`} />
-
-        <div>
-          {/* Card Header */}
-          <div className="flex items-center justify-between pb-3">
-            <div className="flex items-center gap-2">
-              <div className={`p-2 rounded-xl ${currentConfig.bgColor} ${currentConfig.color}`}>
-                <Icon className="w-4 h-4" />
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-primary">{currentConfig.title}</h3>
-                <span className="text-[11px] text-muted font-medium">{percentage}% Allocation</span>
-              </div>
-            </div>
-
-            {type === "tax" && (
-              <span className="flex items-center gap-1 text-[11px] font-semibold text-tax bg-tax/15 px-2 py-0.5 rounded-full border border-tax/30">
-                <Lock className="w-3 h-3" />
-                Locked
-              </span>
-            )}
-            {type === "savings" && (
-              <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${
-                isSavingsUnlocked
-                  ? "text-spend bg-spend/15 border-spend/30"
-                  : "text-savings bg-savings/15 border-savings/30"
-              }`}>
-                {isSavingsUnlocked ? "Unlocked" : "Locked (90d)"}
-              </span>
-            )}
+      <div className="bg-white text-[#050505] rounded-[6px] border-2 border-[#050505] neo-shadow flex flex-col justify-between overflow-hidden relative">
+        {/* Terminal Window Header Bar */}
+        <div className="bg-[#050505] text-white px-4 py-2 flex items-center justify-between border-b-2 border-[#050505]">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD45] border border-black inline-block" />
+            <h3 className="font-display font-black text-xs uppercase tracking-wider text-white">
+              {currentConfig.title}
+            </h3>
           </div>
-
-          {/* Balance */}
-          <div className="my-4">
-            <div className="text-2xl md:text-3xl font-bold font-mono text-primary tnum">
-              {formatUSDC(balance)}
-            </div>
-            <p className="text-xs text-muted mt-1 leading-relaxed">{currentConfig.description}</p>
-          </div>
-
-          {/* Contextual Info */}
-          {type === "tax" && (
-            <div className="p-2.5 rounded-xl bg-surface-elevated border border-border text-[11px] text-muted space-y-1 mb-4">
-              <div className="flex justify-between items-center">
-                <span>Approved Payee:</span>
-                <span className="font-mono text-primary font-medium">
-                  {truncateAddress(profile.taxPayee, 4)}
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span>Release Restriction:</span>
-                <span className="text-tax font-semibold">Enforced on-chain</span>
-              </div>
-            </div>
-          )}
-
-          {type === "savings" && (
-            <div className="p-2.5 rounded-xl bg-surface-elevated border border-border text-[11px] text-muted space-y-1 mb-4">
-              <div className="flex justify-between items-center">
-                <span>Unlock Date:</span>
-                <span className="font-mono text-primary font-medium">
-                  {new Date(profile.savingsUnlockTs * 1000).toLocaleDateString()}
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span>Status:</span>
-                <span className={isSavingsUnlocked ? "text-spend font-semibold" : "text-savings font-semibold"}>
-                  {isSavingsUnlocked ? "Eligible to withdraw" : "Time-locked"}
-                </span>
-              </div>
-            </div>
-          )}
+          <span className="font-mono text-[11px] font-bold px-1.5 py-0.2 rounded bg-white text-black">
+            {percentage}%
+          </span>
         </div>
 
-        {/* Action Button */}
-        <button
-          onClick={handleOpenAction}
-          className={`w-full py-2.5 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
-            type === "spend"
-              ? "bg-spend/15 hover:bg-spend/25 text-spend border-spend/30"
-              : type === "tax"
-              ? "bg-tax/15 hover:bg-tax/25 text-tax border-tax/30"
-              : "bg-savings/15 hover:bg-savings/25 text-savings border-savings/30"
-          }`}
-        >
-          <span>{currentConfig.actionLabel}</span>
-          <ArrowUpRight className="w-3.5 h-3.5" />
-        </button>
+        {/* Content Area */}
+        <div className="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-mono font-bold uppercase text-[#696574] tracking-wider">
+                AVAILABLE BALANCE
+              </span>
+              {type === "tax" && (
+                <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase px-2 py-0.5 rounded bg-[#FFBD45] text-black border border-black neo-shadow-sm font-mono">
+                  <Lock className="w-3 h-3" />
+                  LOCKED
+                </span>
+              )}
+              {type === "savings" && (
+                <span
+                  className={`inline-flex items-center gap-1 text-[10px] font-black uppercase px-2 py-0.5 rounded border border-black neo-shadow-sm font-mono ${
+                    isSavingsUnlocked ? "bg-[#21D99B] text-black" : "bg-[#8790FF] text-black"
+                  }`}
+                >
+                  {isSavingsUnlocked ? "UNLOCKED" : "90D LOCKED"}
+                </span>
+              )}
+            </div>
+
+            {/* Large Balance Display */}
+            <div className="my-3">
+              <div className="text-3xl sm:text-4xl font-display font-black tracking-tight text-[#050505] tnum">
+                {formatUSDC(balance)}
+              </div>
+              <p className="text-xs text-[#696574] mt-1.5 leading-relaxed font-sans">
+                {currentConfig.description}
+              </p>
+            </div>
+
+            {/* Contextual Details */}
+            {type === "tax" && (
+              <div className="p-2.5 rounded-[4px] bg-[#F2F0F7] border border-[#050505] text-[11px] font-mono space-y-1 mb-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-[#696574]">Approved Payee:</span>
+                  <span className="font-bold text-[#050505]">
+                    {truncateAddress(profile.taxPayee, 4)}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-[#696574]">On-Chain Restriction:</span>
+                  <span className="text-[#050505] font-black uppercase">Active</span>
+                </div>
+              </div>
+            )}
+
+            {type === "savings" && (
+              <div className="p-2.5 rounded-[4px] bg-[#F2F0F7] border border-[#050505] text-[11px] font-mono space-y-1 mb-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-[#696574]">Unlock Date:</span>
+                  <span className="font-bold text-[#050505]">
+                    {new Date(profile.savingsUnlockTs * 1000).toLocaleDateString()}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-[#696574]">Withdrawal Status:</span>
+                  <span className={`font-black uppercase ${isSavingsUnlocked ? "text-[#21D99B]" : "text-[#8790FF]"}`}>
+                    {isSavingsUnlocked ? "Eligible" : "Time-Locked"}
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Action Button */}
+          <button
+            onClick={handleOpenAction}
+            className={`w-full py-2.5 px-3 rounded-[4px] border-2 border-[#050505] font-display font-black text-xs uppercase flex items-center justify-center gap-1.5 neo-btn tracking-wider mt-2 ${
+              type === "spend"
+                ? "bg-[#21D99B] text-black hover:bg-emerald-400"
+                : type === "tax"
+                ? "bg-[#FFBD45] text-black hover:bg-amber-300"
+                : "bg-[#8790FF] text-black hover:bg-indigo-300"
+            }`}
+          >
+            <span>{currentConfig.actionLabel}</span>
+            <ArrowUpRight className="w-4 h-4 stroke-[3]" />
+          </button>
+        </div>
       </div>
 
       {/* Action Dialog */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-md bg-surface border border-border rounded-card p-6 shadow-2xl relative space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-border">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in">
+          <div className="w-full max-w-md bg-white border-2 border-[#050505] rounded-[8px] p-6 neo-shadow-lg text-[#050505] relative space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b-2 border-[#050505]">
               <div className="flex items-center gap-2">
-                <div className={`p-2 rounded-xl ${currentConfig.bgColor} ${currentConfig.color}`}>
-                  <Icon className="w-5 h-5" />
+                <div className="p-2 rounded-[4px] bg-[#050505] text-white">
+                  <Icon className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold text-primary">{currentConfig.title} Action</h3>
-                  <p className="text-xs text-muted">Available: {formatUSDC(balance)}</p>
+                  <h3 className="font-display font-black text-base uppercase text-[#050505]">
+                    {currentConfig.title} ACTION
+                  </h3>
+                  <p className="text-xs text-[#696574] font-mono">Available: {formatUSDC(balance)}</p>
                 </div>
               </div>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-muted hover:text-primary text-sm px-2 py-1 rounded"
+                className="w-7 h-7 rounded border border-[#050505] flex items-center justify-center font-bold text-xs hover:bg-[#F2F0F7]"
               >
                 ✕
               </button>
             </div>
 
-            {/* Inputs */}
             <div className="space-y-3">
               <div>
-                <label className="text-xs font-medium text-muted uppercase block mb-1">
+                <label className="text-[11px] font-mono font-bold uppercase text-[#696574] block mb-1">
                   Amount to Transfer (USDC)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-2.5 text-muted text-sm font-semibold">$</span>
+                  <span className="absolute left-3 top-2.5 text-[#050505] text-sm font-bold">$</span>
                   <input
                     type="text"
                     value={withdrawAmountStr}
                     onChange={(e) => setWithdrawAmountStr(e.target.value)}
                     placeholder="250.00"
-                    className="w-full bg-surface-elevated border border-border rounded-xl pl-8 pr-16 py-2 text-sm font-mono text-primary focus:outline-none focus:border-spend"
+                    className="w-full bg-[#F2F0F7] border-2 border-[#050505] rounded-[4px] pl-8 pr-16 py-2 text-sm font-mono font-bold text-[#050505] focus:outline-none focus:bg-white"
                   />
                   <button
                     type="button"
                     onClick={() => setWithdrawAmountStr((Number(balance) / 1000000).toFixed(2))}
-                    className="absolute right-2 top-2 px-2 py-1 text-[10px] font-bold bg-surface border border-border text-muted hover:text-primary rounded"
+                    className="absolute right-2 top-2 px-2 py-0.5 text-[10px] font-black font-mono bg-[#E8FF00] border border-[#050505] text-black rounded"
                   >
                     MAX
                   </button>
@@ -244,7 +252,7 @@ export function VaultCard({ type, balance, percentage }: VaultCardProps) {
 
               {type === "tax" && (
                 <div>
-                  <label className="text-xs font-medium text-muted uppercase block mb-1">
+                  <label className="text-[11px] font-mono font-bold uppercase text-[#696574] block mb-1">
                     Destination Payee Address
                   </label>
                   <input
@@ -252,57 +260,57 @@ export function VaultCard({ type, balance, percentage }: VaultCardProps) {
                     value={targetAddress}
                     onChange={(e) => setTargetAddress(e.target.value)}
                     placeholder="Approved tax payee Solana address..."
-                    className="w-full bg-surface-elevated border border-border rounded-xl px-3 py-2 text-xs font-mono text-primary focus:outline-none focus:border-tax"
+                    className="w-full bg-[#F2F0F7] border-2 border-[#050505] rounded-[4px] px-3 py-2 text-xs font-mono font-bold text-[#050505] focus:outline-none focus:bg-white"
                   />
-                  <div className="mt-1.5 flex items-start gap-1.5 text-[11px] text-muted">
-                    <ShieldCheck className="w-3.5 h-3.5 text-tax shrink-0 mt-0.5" />
+                  <div className="mt-1.5 flex items-start gap-1.5 text-[11px] text-[#696574]">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#FFBD45] shrink-0 mt-0.5" />
                     <span>
                       Tax funds can only be released to your approved payee:{" "}
-                      <span className="font-mono text-primary">{truncateAddress(profile.taxPayee, 4)}</span>. Any other address will be rejected.
+                      <span className="font-mono text-[#050505] font-bold">
+                        {truncateAddress(profile.taxPayee, 4)}
+                      </span>.
                     </span>
                   </div>
                 </div>
               )}
 
               {type === "savings" && !isSavingsUnlocked && (
-                <div className="p-3 rounded-xl bg-danger/10 border border-danger/30 text-xs text-danger flex items-start gap-2">
-                  <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                <div className="p-3 rounded-[4px] bg-[#F2677A]/15 border-2 border-[#F2677A] text-xs text-[#050505] flex items-start gap-2 font-mono">
+                  <AlertCircle className="w-4 h-4 text-[#F2677A] shrink-0 mt-0.5" />
                   <span>
-                    This vault is time-locked until {new Date(profile.savingsUnlockTs * 1000).toLocaleDateString()}. Withdrawals prior to this date will be rejected by smart contract rules.
+                    Time-locked until {new Date(profile.savingsUnlockTs * 1000).toLocaleDateString()}. Withdrawals prior to this date will be rejected on-chain.
                   </span>
                 </div>
               )}
             </div>
 
-            {/* Error or Success notification */}
             {actionError && (
-              <div className="p-3 rounded-xl bg-danger/10 border border-danger/30 text-xs text-danger flex items-start gap-2">
-                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+              <div className="p-3 rounded-[4px] bg-[#F2677A]/15 border-2 border-[#F2677A] text-xs text-[#050505] flex items-start gap-2 font-mono">
+                <AlertCircle className="w-4 h-4 text-[#F2677A] shrink-0 mt-0.5" />
                 <span>{actionError}</span>
               </div>
             )}
             {actionSuccess && (
-              <div className="p-3 rounded-xl bg-spend/10 border border-spend/30 text-xs text-spend flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />
+              <div className="p-3 rounded-[4px] bg-[#21D99B]/15 border-2 border-[#21D99B] text-xs text-[#050505] flex items-start gap-2 font-mono">
+                <CheckCircle2 className="w-4 h-4 text-[#21D99B] shrink-0 mt-0.5" />
                 <span>{actionSuccess}</span>
               </div>
             )}
 
-            {/* Action Buttons */}
             <div className="flex gap-2 pt-2">
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="flex-1 py-2.5 px-4 rounded-xl border border-border text-muted hover:text-primary text-sm font-medium"
+                className="flex-1 py-2.5 px-4 rounded-[4px] border-2 border-[#050505] text-[#050505] hover:bg-[#F2F0F7] text-xs font-display font-bold uppercase tracking-wider"
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={handleExecute}
-                className="flex-1 py-2.5 px-4 rounded-xl bg-spend text-black font-semibold text-sm hover:opacity-90"
+                className="flex-1 py-2.5 px-4 rounded-[4px] bg-[#E8FF00] text-[#050505] font-display font-black text-xs uppercase neo-btn tracking-wider hover:bg-yellow-300"
               >
-                Confirm Transaction
+                Confirm Transfer
               </button>
             </div>
           </div>
