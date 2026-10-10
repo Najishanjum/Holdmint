@@ -18,7 +18,6 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { TaxDisclaimer } from "@/components/TaxDisclaimer";
 import { TickerBar } from "@/components/TickerBar";
 import { ZeroAccidentsHeroText } from "@/components/ZeroAccidentsHeroText";
-import { HowItWorksSteps } from "@/components/HowItWorksSteps";
 import { formatUSDC, parseUSDC, calculateSplit } from "@/lib/utils/format-usdc";
 
 export default function LandingPage() {
@@ -239,8 +238,60 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* How It Works: Animated Word-by-Word & Staggered Scroll Cards */}
-      <HowItWorksSteps />
+      {/* How It Works: Editorial 3-Card Grid */}
+      <section className="py-20 border-b-2 border-[#050505] bg-[#09090B]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center max-w-2xl mx-auto space-y-2 mb-14">
+            <span className="text-xs font-mono font-bold text-[#E8FF00] uppercase tracking-wider">
+              HOW IT WORKS
+            </span>
+            <h2 className="font-display font-black text-4xl sm:text-5xl uppercase tracking-tight text-white">
+              THREE STEPS. ENFORCED AT THE SOURCE.
+            </h2>
+            <p className="text-sm text-[#B8B5C5] font-sans">
+              Non-custodial Solana engineering protecting your quarterly tax liability
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans">
+            <div className="bg-white text-[#050505] p-6 rounded-[6px] border-2 border-[#050505] neo-shadow space-y-3">
+              <div className="w-10 h-10 rounded-[4px] bg-[#050505] text-white font-display font-black text-xl flex items-center justify-center">
+                01
+              </div>
+              <h3 className="font-display font-black text-xl uppercase tracking-tight">
+                CONNECT & CHOOSE SPLIT
+              </h3>
+              <p className="text-xs text-[#696574] leading-relaxed">
+                Connect your Solana wallet and configure your Spend, Tax, and Savings percentages. Designate your worker-approved tax payee address.
+              </p>
+            </div>
+
+            <div className="bg-white text-[#050505] p-6 rounded-[6px] border-2 border-[#050505] neo-shadow space-y-3">
+              <div className="w-10 h-10 rounded-[4px] bg-[#E8FF00] text-[#050505] font-display font-black text-xl flex items-center justify-center border-2 border-[#050505]">
+                02
+              </div>
+              <h3 className="font-display font-black text-xl uppercase tracking-tight">
+                SHARE INVOICE LINK OR INBOX
+              </h3>
+              <p className="text-xs text-[#696574] leading-relaxed">
+                Send clients a clean payment link with QR code, or share your designated Program-Derived Inbox token account for direct transfers.
+              </p>
+            </div>
+
+            <div className="bg-white text-[#050505] p-6 rounded-[6px] border-2 border-[#050505] neo-shadow space-y-3">
+              <div className="w-10 h-10 rounded-[4px] bg-[#5919F6] text-white font-display font-black text-xl flex items-center justify-center">
+                03
+              </div>
+              <h3 className="font-display font-black text-xl uppercase tracking-tight">
+                AUTOMATED ATOMIC ROUTING
+              </h3>
+              <p className="text-xs text-[#696574] leading-relaxed">
+                Incoming USDC is automatically separated into Spend, locked Tax, and time-locked Savings vaults before you even have a chance to spend it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Feature Comparison Table */}
       <section className="py-20 border-b-2 border-[#050505] bg-[#F2F0F7] text-[#050505]">
