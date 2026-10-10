@@ -30,8 +30,8 @@ export default function LandingPage() {
 
   const faqs = [
     {
-      q: "DOES TAX VAULT CALCULATE OR FILE MY GOVERNMENT TAXES?",
-      a: "No. Tax Vault is strictly an on-chain automated routing and custody-separation protocol. It does not calculate statutory tax liability, prepare tax returns, or file with the IRS or Indian Income Tax Department. All percentage allocations are worker-configured planning estimates.",
+      q: "DOES HOLDMINT CALCULATE OR FILE MY GOVERNMENT TAXES?",
+      a: "No. HoldMint is strictly an on-chain automated routing and custody-separation protocol. It does not calculate statutory tax liability, prepare tax returns, or file with the IRS or Indian Income Tax Department. All percentage allocations are worker-configured planning estimates.",
     },
     {
       q: "CAN I WITHDRAW MY TAX BALANCE TO MY PERSONAL WALLET?",
@@ -43,15 +43,15 @@ export default function LandingPage() {
     },
     {
       q: "WHAT HAPPENS IF A CLIENT TRANSFERS DIRECTLY TO MY NORMAL WALLET?",
-      a: "Solana programs cannot intercept ordinary transfers sent directly to a personal wallet. Direct payments must be routed via your Tax Vault Payment Links, or sent to your designated Vault Inbox token account to be swept into the vaults.",
+      a: "Solana programs cannot intercept ordinary transfers sent directly to a personal wallet. Direct payments must be routed via your HoldMint Payment Links, or sent to your designated Vault Inbox token account to be swept into the vaults.",
     },
     {
-      q: "ARE MY FUNDS HELD BY TAX VAULT AS A CUSTODIAN?",
-      a: "Never. Tax Vault is completely non-custodial. Funds are held in Solana Program-Derived Accounts (PDAs) with authority restricted to your worker wallet and your approved rules. Tax Vault has zero custody, zero backdoors, and cannot access your tokens.",
+      q: "ARE MY FUNDS HELD BY HOLDMINT AS A CUSTODIAN?",
+      a: "Never. HoldMint is completely non-custodial. Funds are held in Solana Program-Derived Accounts (PDAs) with authority restricted to your worker wallet and your approved rules. HoldMint has zero custody, zero backdoors, and cannot access your tokens.",
     },
     {
-      q: "IS TAX VAULT LIVE ON SOLANA MAINNET?",
-      a: "Tax Vault is currently running on Solana Devnet with Mock USDC for public testing and security evaluation. It is unaudited devnet software.",
+      q: "IS HOLDMINT LIVE ON SOLANA MAINNET?",
+      a: "HoldMint is currently running on Solana Devnet with Mock USDC for public testing and security evaluation. It is unaudited devnet software.",
     },
   ];
 
@@ -65,11 +65,11 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-[4px] bg-[#5919F6] border-2 border-[#050505] text-white font-display font-black text-lg flex items-center justify-center neo-shadow-sm">
-              TV
+              HM
             </div>
             <div>
               <span className="font-display font-black text-xl tracking-tight uppercase block leading-none text-white">
-                TAX VAULT
+                HOLDMINT
               </span>
               <span className="text-[10px] text-[#A1A1AA] font-mono tracking-wider">
                 SOLANA FINTECH
@@ -300,7 +300,7 @@ export default function LandingPage() {
               PROTOCOL COMPARISON
             </span>
             <h2 className="font-display font-black text-4xl sm:text-5xl uppercase tracking-tight">
-              WHY TAX VAULT BEATS SPREADSHEETS
+              WHY HOLDMINT BEATS SPREADSHEETS
             </h2>
           </div>
 
@@ -311,7 +311,7 @@ export default function LandingPage() {
                   <th className="py-4 px-5">CAPABILITY</th>
                   <th className="py-4 px-5 text-center">SPREADSHEETS</th>
                   <th className="py-4 px-5 text-center">GENERIC TOOLS</th>
-                  <th className="py-4 px-5 text-center bg-[#E8FF00] text-black">TAX VAULT</th>
+                  <th className="py-4 px-5 text-center bg-[#E8FF00] text-black">HOLDMINT</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E5E3ED]">
@@ -406,11 +406,11 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-[4px] bg-[#5919F6] border-2 border-[#050505] text-white font-display font-black flex items-center justify-center text-sm neo-shadow-sm">
-              TV
+              HM
             </div>
             <div>
               <span className="font-display font-black text-base uppercase tracking-tight block leading-none">
-                TAX VAULT
+                HOLDMINT
               </span>
               <span className="text-[10px] text-[#A1A1AA] font-mono">
                 NON-CUSTODIAL · SOLANA DEVNET

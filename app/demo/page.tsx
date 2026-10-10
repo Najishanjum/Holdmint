@@ -111,7 +111,7 @@ export default function DemoPage() {
             Protocol Live Sandbox
           </h1>
           <p className="font-mono text-xs text-white/60">
-            Experience the three core principles of Tax Vault: automatic splitting, liquid spend, and smart-contract protected tax release.
+            Experience the three core principles of HoldMint: automatic splitting, liquid spend, and smart-contract protected tax release.
           </p>
         </div>
 

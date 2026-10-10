@@ -69,11 +69,11 @@ function ClientPayContent() {
       <header className="max-w-xl mx-auto w-full flex items-center justify-between pb-6">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 bg-[#E8FF00] text-black font-mono font-black flex items-center justify-center neo-border text-base">
-            TV
+            HM
           </div>
           <div>
             <span className="font-display font-black text-2xl uppercase tracking-tight text-white block leading-none">
-              TAX VAULT
+              HOLDMINT
             </span>
             <span className="font-mono text-[9px] text-[#E8FF00] tracking-widest uppercase">
               PAYMENT GATEWAY

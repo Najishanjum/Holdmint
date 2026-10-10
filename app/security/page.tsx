@@ -12,7 +12,7 @@ export default function SecurityPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 font-mono text-xs uppercase font-bold text-white hover:text-[#E8FF00] transition-colors">
             <ArrowLeft className="w-4 h-4 text-[#E8FF00]" />
-            <span>TAX VAULT HOME</span>
+            <span>HOLDMINT HOME</span>
           </Link>
           <Link
             href="/app"
@@ -35,7 +35,7 @@ export default function SecurityPage() {
             Security Model & Boundaries
           </h1>
           <p className="font-mono text-xs text-white/60 leading-relaxed">
-            Tax Vault is engineered with conservative non-custodial principles, explicit account constraints, and persistent disclaimers.
+            HoldMint is engineered with conservative non-custodial principles, explicit account constraints, and persistent disclaimers.
           </p>
         </div>
 
@@ -61,7 +61,7 @@ export default function SecurityPage() {
             </div>
             <div className="p-6 space-y-3">
               <p className="font-mono text-xs text-black/80 leading-relaxed">
-                Worker vaults are derived deterministically using Program-Derived Addresses (PDAs) with seeds <code className="bg-[#050505] text-[#E8FF00] px-1.5 py-0.5 text-[11px] font-mono">[b"profile", owner.key()]</code> and <code className="bg-[#050505] text-[#E8FF00] px-1.5 py-0.5 text-[11px] font-mono">[b"vault_auth", profile.key()]</code>. Only the signer who holds the private key to the profile owner can trigger configuration updates or withdrawals. Tax Vault maintains zero administrator keys and cannot freeze or redirect worker funds.
+                Worker vaults are derived deterministically using Program-Derived Addresses (PDAs) with seeds <code className="bg-[#050505] text-[#E8FF00] px-1.5 py-0.5 text-[11px] font-mono">[b"profile", owner.key()]</code> and <code className="bg-[#050505] text-[#E8FF00] px-1.5 py-0.5 text-[11px] font-mono">[b"vault_auth", profile.key()]</code>. Only the signer who holds the private key to the profile owner can trigger configuration updates or withdrawals. HoldMint maintains zero administrator keys and cannot freeze or redirect worker funds.
               </p>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function SecurityPage() {
             </div>
             <div className="p-6 space-y-3">
               <p className="font-mono text-xs text-black/80 leading-relaxed">
-                Under Solana's runtime architecture, a smart contract cannot intercept or monitor generic token transfers sent directly to a worker's personal keypair. For Tax Vault's three-vault split to occur, payments must be initiated via Tax Vault payment instructions or transferred to the worker's designated Vault Inbox PDA.
+                Under Solana's runtime architecture, a smart contract cannot intercept or monitor generic token transfers sent directly to a worker's personal keypair. For HoldMint's three-vault split to occur, payments must be initiated via HoldMint payment instructions or transferred to the worker's designated Vault Inbox PDA.
               </p>
             </div>
           </div>

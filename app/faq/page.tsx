@@ -10,8 +10,8 @@ export default function FAQPage() {
 
   const faqs = [
     {
-      q: "Does Tax Vault calculate or file my government taxes?",
-      a: "No. Tax Vault is strictly an on-chain automated routing and custody-separation protocol. It does not calculate statutory tax liability, prepare tax returns, or file with the IRS or Indian Income Tax Department. All percentage allocations are worker-configured planning estimates.",
+      q: "Does HoldMint calculate or file my government taxes?",
+      a: "No. HoldMint is strictly an on-chain automated routing and custody-separation protocol. It does not calculate statutory tax liability, prepare tax returns, or file with the IRS or Indian Income Tax Department. All percentage allocations are worker-configured planning estimates.",
     },
     {
       q: "Can I withdraw my tax balance to my personal wallet?",
@@ -31,15 +31,15 @@ export default function FAQPage() {
     },
     {
       q: "What happens if a client transfers directly to my normal wallet?",
-      a: "Solana programs cannot intercept ordinary transfers sent directly to a personal wallet. Direct payments must be routed via your Tax Vault Payment Links, or sent to your designated Vault Inbox token account to be swept into the vaults.",
+      a: "Solana programs cannot intercept ordinary transfers sent directly to a personal wallet. Direct payments must be routed via your HoldMint Payment Links, or sent to your designated Vault Inbox token account to be swept into the vaults.",
     },
     {
-      q: "Are my funds held by Tax Vault as a custodian?",
-      a: "Never. Tax Vault is completely non-custodial. Funds are held in Solana Program-Derived Accounts (PDAs) with authority restricted to your worker wallet and your approved rules. Tax Vault has zero custody, zero backdoors, and cannot access your tokens.",
+      q: "Are my funds held by HoldMint as a custodian?",
+      a: "Never. HoldMint is completely non-custodial. Funds are held in Solana Program-Derived Accounts (PDAs) with authority restricted to your worker wallet and your approved rules. HoldMint has zero custody, zero backdoors, and cannot access your tokens.",
     },
     {
-      q: "Is Tax Vault live on mainnet?",
-      a: "Tax Vault is currently running on Solana Devnet with Mock USDC for public testing and security evaluation. It is unaudited devnet software.",
+      q: "Is HoldMint live on mainnet?",
+      a: "HoldMint is currently running on Solana Devnet with Mock USDC for public testing and security evaluation. It is unaudited devnet software.",
     },
     {
       q: "Does the tax-readiness indicator mean my tax liability is covered?",
@@ -53,7 +53,7 @@ export default function FAQPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 font-mono text-xs uppercase font-bold text-white hover:text-[#E8FF00] transition-colors">
             <ArrowLeft className="w-4 h-4 text-[#E8FF00]" />
-            <span>TAX VAULT HOME</span>
+            <span>HOLDMINT HOME</span>
           </Link>
           <Link
             href="/app"

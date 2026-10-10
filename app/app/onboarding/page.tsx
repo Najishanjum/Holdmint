@@ -92,13 +92,13 @@ export default function OnboardingPage() {
             <div className="p-6 md:p-8 space-y-6">
               <div className="space-y-2">
                 <span className="px-2.5 py-1 bg-[#E8FF00] text-black font-mono text-xs font-black uppercase neo-border inline-block">
-                  TAX VAULT PROTOCOL
+                  HOLDMINT PROTOCOL
                 </span>
                 <h2 className="font-display text-3xl font-black uppercase tracking-tight text-black">
                   Automated Solana Income Routing for Freelancers
                 </h2>
                 <p className="text-xs font-mono text-black/80 leading-relaxed">
-                  Tax Vault deploys a set of program-derived token accounts (PDAs) on Solana that automatically separate incoming USDC into three dedicated vaults: Spend, Tax, and Savings.
+                  HoldMint deploys a set of program-derived token accounts (PDAs) on Solana that automatically separate incoming USDC into three dedicated vaults: Spend, Tax, and Savings.
                 </p>
               </div>
 

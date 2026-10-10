@@ -9,7 +9,7 @@ export default function TermsPage() {
       <header className="border-b border-border bg-surface/80 px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-sm font-bold">
           <ArrowLeft className="w-4 h-4 text-muted" />
-          <span>Tax Vault</span>
+          <span>HoldMint</span>
         </Link>
       </header>
       <main className="max-w-3xl mx-auto px-6 py-12 space-y-6 flex-1">
@@ -18,7 +18,7 @@ export default function TermsPage() {
           Placeholder terms for Devnet demonstration. Requires legal review prior to mainnet production.
         </div>
         <p className="text-xs text-muted leading-relaxed">
-          Tax Vault is non-custodial software provided on an "as is" and "as available" basis without warranties of any kind. Tax Vault does not provide tax, legal, or accounting advice. Users are solely responsible for determining, withholding, and remitting any taxes due to applicable government tax authorities.
+          HoldMint is non-custodial software provided on an "as is" and "as available" basis without warranties of any kind. HoldMint does not provide tax, legal, or accounting advice. Users are solely responsible for determining, withholding, and remitting any taxes due to applicable government tax authorities.
         </p>
       </main>
       <footer className="border-t border-border py-4 px-6 text-center">

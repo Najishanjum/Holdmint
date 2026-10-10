@@ -16,14 +16,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tax Vault — Neo-Brutalist Solana Income Splitter",
+  title: "HoldMint — Neo-Brutalist Solana Income Splitter",
   description:
     "Earn freely. Save automatically. Protect your tax money. Non-custodial Solana financial protocol dividing incoming USDC into Spend, Tax, and Savings vaults.",
   keywords: [
     "Solana",
     "Anchor",
     "Fintech",
-    "Tax Vault",
+    "HoldMint",
     "USDC",
     "Neo-Brutalist",
     "Non-custodial",

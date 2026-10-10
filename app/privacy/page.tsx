@@ -9,7 +9,7 @@ export default function PrivacyPage() {
       <header className="border-b border-border bg-surface/80 px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-sm font-bold">
           <ArrowLeft className="w-4 h-4 text-muted" />
-          <span>Tax Vault</span>
+          <span>HoldMint</span>
         </Link>
       </header>
       <main className="max-w-3xl mx-auto px-6 py-12 space-y-6 flex-1">
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
           Placeholder policy for Devnet demonstration. Requires legal review prior to mainnet production.
         </div>
         <p className="text-xs text-muted leading-relaxed">
-          Tax Vault is non-custodial and operates primarily on the Solana blockchain. Public wallet addresses and transaction data are broadcast to the public ledger according to Solana network protocols. We do not collect private keys, seed phrases, or government identity documentation.
+          HoldMint is non-custodial and operates primarily on the Solana blockchain. Public wallet addresses and transaction data are broadcast to the public ledger according to Solana network protocols. We do not collect private keys, seed phrases, or government identity documentation.
         </p>
       </main>
       <footer className="border-t border-border py-4 px-6 text-center">

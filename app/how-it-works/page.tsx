@@ -12,7 +12,7 @@ export default function HowItWorksPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 font-mono text-xs uppercase font-bold text-white hover:text-[#E8FF00] transition-colors">
             <ArrowLeft className="w-4 h-4 text-[#E8FF00]" />
-            <span>TAX VAULT HOME</span>
+            <span>HOLDMINT HOME</span>
           </Link>
           <Link
             href="/app"
@@ -32,7 +32,7 @@ export default function HowItWorksPage() {
             </span>
           </div>
           <h1 className="font-display text-4xl sm:text-5xl font-black uppercase tracking-tight text-white">
-            How Tax Vault Works
+            How HoldMint Works
           </h1>
           <p className="font-mono text-xs text-white/60 leading-relaxed">
             A comprehensive explanation of how non-custodial Program-Derived Accounts (PDAs), atomic payment splitting, and approved payee safeguards protect freelancer capital.
@@ -51,7 +51,7 @@ export default function HowItWorksPage() {
                 <span>The Accidental Tax Spending Dilemma</span>
               </h2>
               <p className="font-mono text-xs text-black/80 leading-relaxed">
-                Freelancers, indie developers, and consultants who receive crypto payments directly into personal hot wallets inevitably co-mingle operational cash with tax reserves. When quarterly estimated tax payments arrive, funds have often been accidentally spent on living or business expenses. Tax Vault eliminates this failure mode at the source of payment.
+                Freelancers, indie developers, and consultants who receive crypto payments directly into personal hot wallets inevitably co-mingle operational cash with tax reserves. When quarterly estimated tax payments arrive, funds have often been accidentally spent on living or business expenses. HoldMint eliminates this failure mode at the source of payment.
               </p>
             </div>
           </div>
@@ -67,7 +67,7 @@ export default function HowItWorksPage() {
                 <span>Program-Derived Accounts & Three Vaults</span>
               </h2>
               <p className="font-mono text-xs text-black/80 leading-relaxed">
-                When a worker initializes their Tax Vault profile, the Anchor program creates three isolated token accounts owned by a Program-Derived Authority:
+                When a worker initializes their HoldMint profile, the Anchor program creates three isolated token accounts owned by a Program-Derived Authority:
               </p>
               <ul className="space-y-2.5 font-mono text-xs text-black/80 pl-2">
                 <li className="p-3 bg-[#F2F0F7] neo-border">
@@ -105,7 +105,7 @@ export default function HowItWorksPage() {
             href="/app/onboarding"
             className="neo-btn px-8 py-4 bg-[#E8FF00] hover:bg-[#d8ed00] text-black font-mono font-black text-sm uppercase tracking-wider neo-border neo-shadow flex items-center gap-2"
           >
-            <span>Get Started with Tax Vault</span>
+            <span>Get Started with HoldMint</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

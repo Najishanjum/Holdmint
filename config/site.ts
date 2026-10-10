@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Tax Vault",
+  name: "HoldMint",
   tagline: "Earn freely. Save automatically. Protect your tax money.",
   description:
     "Non-custodial Solana financial application that splits incoming USDC payments into Spend, Tax, and Savings vaults at the source of payment.",

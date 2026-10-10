@@ -140,7 +140,7 @@ export default function VaultsPage() {
               <span>SOLANA DIRECT TRANSFER INTERCEPTION BOUNDARY</span>
             </div>
             <p className="text-xs text-black/80 font-mono leading-relaxed">
-              Solana runtime programs cannot retroactively intercept arbitrary SPL-token transfers directed to your personal wallet public key. To guarantee automated withholding, always distribute your generated <strong className="text-black bg-[#E8FF00] px-1 font-bold">Tax Vault Payment Links</strong> or direct enterprise clients to your unique PDA Vault Inbox token account. Once deposited, anyone or any automated crank service can trigger <code className="bg-[#050505] text-[#E8FF00] px-1.5 py-0.5 rounded text-[11px] font-mono">sweep_inbox</code> to atomically enforce your split ratios.
+              Solana runtime programs cannot retroactively intercept arbitrary SPL-token transfers directed to your personal wallet public key. To guarantee automated withholding, always distribute your generated <strong className="text-black bg-[#E8FF00] px-1 font-bold">HoldMint Payment Links</strong> or direct enterprise clients to your unique PDA Vault Inbox token account. Once deposited, anyone or any automated crank service can trigger <code className="bg-[#050505] text-[#E8FF00] px-1.5 py-0.5 rounded text-[11px] font-mono">sweep_inbox</code> to atomically enforce your split ratios.
             </p>
             <div className="pt-2 flex flex-wrap gap-2 text-[11px] font-mono font-bold">
               <span className="bg-[#050505] text-white px-2.5 py-1">SEED: b"vault_inbox"</span>
