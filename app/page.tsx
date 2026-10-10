@@ -17,6 +17,7 @@ import {
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { TaxDisclaimer } from "@/components/TaxDisclaimer";
 import { TickerBar } from "@/components/TickerBar";
+import { ZeroAccidentsHeroText } from "@/components/ZeroAccidentsHeroText";
 import { formatUSDC, parseUSDC, calculateSplit } from "@/lib/utils/format-usdc";
 
 export default function LandingPage() {
@@ -120,7 +121,7 @@ export default function LandingPage() {
                 YOUR MONEY. <br />
                 YOUR RULES. <br />
                 <span className="inline-block bg-[#E8FF00] text-[#050505] px-2 mt-1">
-                  ZERO ACCIDENTS.
+                  <ZeroAccidentsHeroText />
                 </span>
               </h1>
             </div>
