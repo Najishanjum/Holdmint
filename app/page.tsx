@@ -20,7 +20,7 @@ import { TickerBar } from "@/components/TickerBar";
 import { formatUSDC, parseUSDC, calculateSplit } from "@/lib/utils/format-usdc";
 
 export default function LandingPage() {
-  const [demoAmountStr, setDemoAmountStr] = useState("1000.00");
+  const [demoAmountStr, setDemoAmountStr] = useState("250.00");
   const [taxBps, setTaxBps] = useState(2500); // 25%
   const [savingsBps, setSavingsBps] = useState(500); // 5%
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
@@ -182,7 +182,7 @@ export default function LandingPage() {
                   </div>
 
                   <div className="grid grid-cols-3 gap-2">
-                    {["500.00", "1000.00", "2500.00"].map((amt) => (
+                    {["100.00", "250.00", "500.00"].map((amt) => (
                       <button
                         key={amt}
                         onClick={() => setDemoAmountStr(amt)}

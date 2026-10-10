@@ -14,7 +14,7 @@ export function DemoDrawer() {
     resetDemoData,
   } = useVault();
 
-  const [amountStr, setAmountStr] = useState<string>("1000.00");
+  const [amountStr, setAmountStr] = useState<string>("250.00");
   const [payerName, setPayerName] = useState<string>("Acme Studio");
   const [memo, setMemo] = useState<string>("Brand Identity Milestone 1");
   const [lastSplit, setLastSplit] = useState<any>(null);
@@ -23,7 +23,7 @@ export function DemoDrawer() {
 
   if (!isDemoDrawerOpen) return null;
 
-  const quickAmounts = ["100.00", "500.00", "1000.00", "2500.00"];
+  const quickAmounts = ["100.00", "200.00", "350.00", "500.00"];
   const parsedBaseUnits = parseUSDC(amountStr);
   const previewSplit = calculateSplit(parsedBaseUnits, profile.taxBps, profile.savingsBps);
 
@@ -106,7 +106,7 @@ export function DemoDrawer() {
                   type="text"
                   value={amountStr}
                   onChange={(e) => setAmountStr(e.target.value)}
-                  placeholder="1000.00"
+                  placeholder="250.00"
                   className="w-full bg-[#F2F0F7] border-2 border-[#050505] rounded-[4px] pl-8 pr-4 py-2 text-sm font-mono font-bold text-[#050505] focus:outline-none focus:bg-white"
                 />
               </div>

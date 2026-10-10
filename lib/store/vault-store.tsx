@@ -60,7 +60,7 @@ interface VaultContextType {
 
 const VaultContext = createContext<VaultContextType | undefined>(undefined);
 
-const STORAGE_KEY = "tax_vault_state_v1";
+const STORAGE_KEY = "holdmint_vault_state_v2";
 
 export function VaultProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<WorkerProfileData>(INITIAL_DEMO_PROFILE);
@@ -87,7 +87,7 @@ export function VaultProvider({ children }: { children: ReactNode }) {
             ...parsed.profile,
             totalReceived: BigInt(parsed.profile.totalReceived || "0"),
             totalTaxReserved: BigInt(parsed.profile.totalTaxReserved || "0"),
-            projectedTaxNeed: BigInt(parsed.profile.projectedTaxNeed || "2500000000"),
+            projectedTaxNeed: BigInt(parsed.profile.projectedTaxNeed || "250000000"),
           });
         }
         if (parsed.balances) {

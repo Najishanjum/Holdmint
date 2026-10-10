@@ -39,8 +39,8 @@ export default function DemoPage() {
   };
 
   const handleStep1Payment = () => {
-    const res = processPayment(1_000_000_000n, "Acme Studio", "Demo $1,000 Payment");
-    addLog("Processed $1,000.00 USDC payment from Acme Studio");
+    const res = processPayment(500_000_000n, "Acme Studio", "Demo $500 Payment");
+    addLog("Processed $500.00 USDC payment from Acme Studio");
     addLog(`-> Spend: ${formatUSDC(res.split.spendAmount)} (70%)`);
     addLog(`-> Tax Vault: ${formatUSDC(res.split.taxAmount)} (25%) [LOCKED]`);
     addLog(`-> Savings Vault: ${formatUSDC(res.split.savingsAmount)} (5%)`);
@@ -153,20 +153,20 @@ export default function DemoPage() {
                     1
                   </span>
                   <h3 className="font-display text-xl font-black uppercase tracking-tight text-black">
-                    Simulate $1,000.00 USDC Payment Inflow
+                    Simulate $500.00 USDC Payment Inflow
                   </h3>
                 </div>
                 <span className="font-mono text-xs font-bold text-black/60 uppercase">Split: 70% / 25% / 5%</span>
               </div>
               <p className="text-xs font-mono text-black/80">
-                Trigger a payment and watch the atomic math divide funds into Spend ($700), Tax ($250), and Savings ($50).
+                Trigger a payment and watch the atomic math divide funds into Spend ($350), Tax ($125), and Savings ($25).
               </p>
               <button
                 onClick={handleStep1Payment}
                 className="neo-btn px-5 py-2.5 bg-[#E8FF00] hover:bg-[#d8ed00] text-black font-mono font-black text-xs uppercase tracking-wider neo-border neo-shadow flex items-center gap-2"
               >
                 <Play className="w-3.5 h-3.5 fill-current" />
-                <span>Simulate $1,000 Payment</span>
+                <span>Simulate $500 Payment</span>
               </button>
             </div>
 
