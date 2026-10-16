@@ -131,4 +131,4 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - [ ] Push and SMS statutory tax deadline reminders
 - [ ] Formal independent smart contract security audit
 - [ ] Production Solana Mainnet-Beta deployment
-for usdc payment
+for usdc payment this is in development mode
