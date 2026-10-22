@@ -19,7 +19,7 @@ When a client pays an invoice, the Tax Vault Solana smart contract automatically
 2. **Tax Vault** (#F5B44A - Amber): Smart-contract protected. Tokens can **only** be released to an approved tax payee designated by the worker.
 3. **Savings Vault** (#7C8CFF - Periwinkle): Time-locked treasury reserves with configurable lock durations (30, 90, 180 days).
 
----
+---   
 
 ## 2. Non-Negotiable Boundaries & Disclaimers
 - **Estimate, not tax advice**: All percentage allocations and readiness indicators are user-defined planning targets, not statutory tax calculations.
