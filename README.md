@@ -13,7 +13,7 @@
 ## 1. Product Overview
 
 **Tax Vault** is a non-custodial financial application on Solana built for freelancers, independent developers, designers, and creators receiving USDC from clients.
-
+ccc
 When a client pays an invoice, the Tax Vault Solana smart contract automatically routes the payment into three worker-controlled vaults:
 1. **Spend Vault** (#34D399 - Emerald green): Completely liquid operational capital for day-to-day freelancer expenses.
 2. **Tax Vault** (#F5B44A - Amber): Smart-contract protected. Tokens can **only** be released to an approved tax payee designated by the worker.
